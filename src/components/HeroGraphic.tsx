@@ -1,320 +1,554 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
-import { TrendingUp } from "lucide-react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useRef, useEffect, useState, useMemo } from "react";
 
-// ── Bar data — matches reference: tall-gold, short-teal, tallest-gold, shortest-teal, tall-teal, tall-gold ──
-// Heights are % of chart area (185px). Values > 100 overflow above the card header.
-const BARS = [
-  { h: 106, grad: "linear-gradient(to top, #C4A05A, #E8CA8A)" },
-  { h: 36,  grad: "linear-gradient(to top, #0A3F4A, #1A7A8C)" },
-  { h: 114, grad: "linear-gradient(to top, #C4A05A, #E8CA8A)" },
-  { h: 24,  grad: "linear-gradient(to top, #0A3F4A, #1A7A8C)" },
-  { h: 82,  grad: "linear-gradient(to top, #0A3F4A, #1A7A8C)" },
-  { h: 110, grad: "linear-gradient(to top, #C4A05A, #E8CA8A)" },
+// ── Data ──
+const MONTHLY_DATA = [42, 55, 38, 70, 65, 80, 74, 88, 62, 95, 85, 100];
+const MONTHS = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
+
+const TICKER_ITEMS = [
+  "Self Assessment submitted on time",
+  "Corporation Tax return filed — £0 penalty",
+  "Payroll processed · 12 employees",
+  "VAT return filed before deadline",
+  "Bookkeeping up to date — all accounts reconciled",
 ];
 
-const CHART_H = 185; // px — bar container height
+// ── Animated number counter ──
+function AnimatedNumber({
+  target,
+  decimals = 0,
+  suffix = "",
+}: {
+  target: number;
+  decimals?: number;
+  suffix?: string;
+}) {
+  const [display, setDisplay] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
-// ── Trend line sits in lower portion of chart (not on bar tops) ──
-// Starts ~50%, dips to ~72%, rises to ~42% from top
-const LINE  = `M 0,92 C 30,98 60,118 100,126 C 140,134 160,128 200,110 C 240,92 270,80 300,76`;
-const LFILL = `${LINE} L 300,${CHART_H} L 0,${CHART_H} Z`;
-
-// ── Calculator keys ──
-const CALC_ROWS = [
-  [
-    { label: "C", bg: "rgba(254,226,226,0.9)", color: "#DC2626" },
-    { label: "%", bg: "rgba(14,93,107,0.13)",  color: "#0E5D6B" },
-    { label: "÷", bg: "rgba(14,93,107,0.13)",  color: "#0E5D6B" },
-  ],
-  [{ label: "7", bg: "#F1F5F9", color: "#334155" }, { label: "8", bg: "#F1F5F9", color: "#334155" }, { label: "9", bg: "#F1F5F9", color: "#334155" }],
-  [{ label: "4", bg: "#F1F5F9", color: "#334155" }, { label: "5", bg: "#F1F5F9", color: "#334155" }, { label: "6", bg: "#F1F5F9", color: "#334155" }],
-  [{ label: "1", bg: "#F1F5F9", color: "#334155" }, { label: "2", bg: "#F1F5F9", color: "#334155" }, { label: "3", bg: "#F1F5F9", color: "#334155" }],
-];
-
-function CalcDisplay({ go }: { go: boolean }) {
-  const [val, setVal] = useState(0);
   useEffect(() => {
-    if (!go) return;
-    const target = 2450, start = performance.now();
-    const tick = (now: number) => {
-      const p = Math.min((now - start) / 1600, 1);
-      setVal(Math.round((1 - Math.pow(1 - p, 3)) * target));
-      if (p < 1) requestAnimationFrame(tick);
+    if (hasAnimated) return;
+    const start = performance.now();
+    const duration = 800;
+
+    const animate = (now: number) => {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplay(Math.round(eased * target * 10) / 10);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setHasAnimated(true);
+      }
     };
-    const id = setTimeout(() => requestAnimationFrame(tick), 700);
-    return () => clearTimeout(id);
-  }, [go]);
-  return <span>£{val.toLocaleString("en-GB")}</span>;
+
+    requestAnimationFrame(animate);
+  }, [target, hasAnimated]);
+
+  return <span>{display.toFixed(decimals)}{suffix}</span>;
+}
+
+// ── Pre-compute bar heights (deterministic) ──
+function useBarData() {
+  return useMemo(() => {
+    const max = Math.max(...MONTHLY_DATA);
+    return MONTHLY_DATA.map((value, i) => ({
+      value,
+      height: Math.round((value / max) * 68),
+      isHigh: value >= 80,
+      delay: i * 0.05,
+      month: MONTHS[i],
+    }));
+  }, []);
 }
 
 export default function HeroGraphic() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
+  const shouldReduce = useReducedMotion();
+  const barData = useBarData();
+
+  // Ticker animation state
+  const [tickerIndex, setTickerIndex] = useState(0);
+
+  useEffect(() => {
+    if (!inView || shouldReduce) return;
+    const timer = setInterval(() => {
+      setTickerIndex((prev) => (prev + 1) % TICKER_ITEMS.length);
+    }, 2000);
+    return () => clearInterval(timer);
+  }, [inView, shouldReduce]);
+
+  const currentTicker = TICKER_ITEMS[tickerIndex];
 
   return (
-    // Container slightly taller to show bar overflow above card
-    <div ref={ref} className="relative select-none" style={{ width: 390, height: 380 }}>
-
-      {/* ── Ambient glow ── */}
-      <div className="absolute pointer-events-none" style={{
-        inset: -60,
-        background: "radial-gradient(ellipse at 55% 50%, rgba(14,93,107,0.2) 0%, rgba(211,178,103,0.08) 45%, transparent 68%)",
-        filter: "blur(32px)", zIndex: 0,
-      }} />
-
-      {/* ── Floating £ coin ── */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0, y: 14 }}
-        animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
-        transition={{ duration: 0.55, delay: 0.2, type: "spring", stiffness: 220, damping: 14 }}
-        className="absolute z-30" style={{ top: 2, left: 50 }}
-      >
-        <motion.div
-          animate={{ y: [-6, 6, -6] }}
-          transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
-          className="w-14 h-14 rounded-full flex items-center justify-center font-bold text-2xl"
-          style={{ background: "linear-gradient(145deg,#E8CA8A,#D3B267)", color: "#0A3F4A", boxShadow: "0 10px 28px rgba(211,178,103,0.55)" }}
-        >£</motion.div>
-      </motion.div>
-
-      {/* ── Main chart card (overflow VISIBLE so tall bars emerge above) ── */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9, y: 26 }}
-        animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
-        transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute z-10"
+    <div
+      ref={ref}
+      className="relative select-none"
+      style={{
+        width: "100%",
+        maxWidth: 420,
+        minHeight: 420,
+        margin: "0 auto",
+        padding: "20px 0",
+      }}
+    >
+      {/* ── Ambient background ── */}
+      <div
+        className="absolute pointer-events-none"
         style={{
-          top: 30, left: 0, right: 88,
-          borderRadius: 24,
-          overflow: "visible",          // ← bars overflow above card
-          background: "#fff",
-          border: "1.5px solid rgba(14,93,107,0.1)",
-          boxShadow: "0 24px 60px rgba(14,93,107,0.18), 0 4px 16px rgba(0,0,0,0.06)",
+          inset: -60,
+          background:
+            "radial-gradient(ellipse at 50% 30%, rgba(14,93,107,0.2) 0%, rgba(211,178,103,0.05) 50%, transparent 70%)",
+          filter: "blur(40px)",
+          zIndex: 0,
+        }}
+      />
+
+      {/* ── Corner decorative arcs ── */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: -40,
+          right: -40,
+          width: 140,
+          height: 140,
+          border: "1px solid rgba(211,178,103,0.1)",
+          borderRadius: "50%",
+          zIndex: 1,
+        }}
+      />
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: -70,
+          right: -70,
+          width: 200,
+          height: 200,
+          border: "1px solid rgba(211,178,103,0.06)",
+          borderRadius: "50%",
+          zIndex: 1,
+        }}
+      />
+
+      {/* ── Main card ── */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="relative z-10"
+        style={{
+          background:
+            "linear-gradient(175deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%)",
+          border: "1.5px solid rgba(211,178,103,0.18)",
+          borderRadius: 20,
+          backdropFilter: "blur(16px)",
+          boxShadow:
+            "0 24px 60px rgba(10,63,74,0.25), inset 0 1px 0 rgba(255,255,255,0.08)",
+          padding: 24,
         }}
       >
-        {/* ── Teal header band — sits ON TOP of bars (z-index 20) ── */}
-        <div
-          className="relative flex items-center gap-2 px-5"
-          style={{
-            height: 36, zIndex: 20,
-            background: "linear-gradient(90deg,#0A3F4A,#0E5D6B)",
-            borderRadius: "22px 22px 0 0",
-          }}
-        >
-          {["rgba(255,255,255,0.7)", "#D3B267", "rgba(255,255,255,0.25)"].map((c, i) => (
-            <div key={i} className="w-2.5 h-2.5 rounded-full" style={{ background: c }} />
-          ))}
-          <div className="ml-2 h-1.5 flex-1 rounded-full opacity-20" style={{ background: "#fff" }} />
+        {/* ── Top strip ── */}
+        <div className="flex items-center justify-between mb-5">
+          <div className="flex items-center gap-3">
+            <div
+              className="w-8 h-8 rounded-lg flex items-center justify-center"
+              style={{
+                background: "rgba(211,178,103,0.15)",
+                border: "1px solid rgba(211,178,103,0.3)",
+              }}
+            >
+              <svg width={16} height={16} viewBox="0 0 16 16" fill="none">
+                <rect
+                  x="2"
+                  y="2"
+                  width="5"
+                  height="6"
+                  rx="1"
+                  fill="#D3B267"
+                  opacity={0.8}
+                />
+                <rect
+                  x="9"
+                  y="2"
+                  width="5"
+                  height="6"
+                  rx="1"
+                  fill="#D3B267"
+                  opacity={0.5}
+                />
+                <rect
+                  x="2"
+                  y="10"
+                  width="12"
+                  height="4"
+                  rx="1"
+                  fill="#D3B267"
+                  opacity={0.9}
+                />
+              </svg>
+            </div>
+            <div>
+              <div
+                className="text-[10px] font-semibold uppercase tracking-wider"
+                style={{ color: "rgba(255,255,255,0.5)" }}
+              >
+                Financial Dashboard
+              </div>
+              <div className="text-sm font-bold" style={{ color: "#fff" }}>
+                Real-time overview
+              </div>
+            </div>
+          </div>
+
+          {/* Live badge */}
+          <div
+            className="flex items-center gap-2 px-2.5 py-1.5 rounded-full"
+            style={{
+              background: "rgba(14,93,107,0.5)",
+              border: "1px solid rgba(211,178,103,0.25)",
+            }}
+          >
+            <motion.div
+              animate={{ scale: [1, 1.2, 1], opacity: [1, 0.5, 1] }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+              className="w-1.5 h-1.5 rounded-full"
+              style={{ background: "#4caf7d" }}
+            />
+            <span className="text-[9px] font-semibold" style={{ color: "#D3B267" }}>
+              Live
+            </span>
+          </div>
         </div>
 
-        {/* ── Chart area ── */}
-        <div
-          className="relative"
-          style={{
-            height: CHART_H,
-            overflow: "visible",          // bars taller than 100% emerge above
-            padding: "0 10px 10px",
-          }}
-        >
-          {/* Guide lines */}
-          {[0.3, 0.6].map((t, i) => (
-            <div key={i} className="absolute left-2 right-2" style={{
-              top: `${t * 100}%`, height: 1, background: "rgba(14,93,107,0.05)", zIndex: 1,
-            }} />
-          ))}
-
-          {/* ── Bars — spring-bounce, anchored to bottom ── */}
-          <div
-            className="absolute left-2.5 right-2.5 bottom-2.5 flex items-end"
-            style={{ gap: 4, overflow: "visible" }}
-          >
-            {BARS.map((bar, i) => (
+        {/* ── Visual area ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-4">
+          {/* ── Left column ── */}
+          <div className="lg:col-span-3 flex flex-col gap-3">
+            {/* KPI row */}
+            <div className="grid grid-cols-2 gap-2">
               <motion.div
-                key={i}
-                initial={{ scaleY: 0, opacity: 0 }}
-                animate={inView ? { scaleY: 1, opacity: 1 } : {}}
-                transition={{
-                  delay: 0.4 + i * 0.11,
-                  type: "spring",
-                  stiffness: 85,
-                  damping: 8,           // overshoot = growth "pop" effect
-                }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.15 }}
+                className="p-2.5 rounded-lg border"
                 style={{
-                  flex: 1,
-                  height: `${bar.h}%`,  // tall bars overflow above container
-                  background: bar.grad,
-                  borderRadius: "5px 5px 2px 2px",
-                  transformOrigin: "bottom",
-                  zIndex: 5,
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(211,178,103,0.15)",
+                }}
+              >
+                <div className="text-[8px] uppercase tracking-wider mb-1" style={{ color: "rgba(211,178,103,0.6)" }}>
+                  Tax Saved
+                </div>
+                <div className="text-lg font-bold" style={{ color: "#D3B267" }}>
+                  £<AnimatedNumber target={18.4} decimals={1} suffix="k" />
+                </div>
+                <div className="text-[9px] mt-1" style={{ color: "#4cdd8e" }}>
+                  ↑ 12% vs last yr
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="p-2.5 rounded-lg border"
+                style={{
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(211,178,103,0.15)",
+                }}
+              >
+                <div className="text-[8px] uppercase tracking-wider mb-1" style={{ color: "rgba(211,178,103,0.6)" }}>
+                  Compliance
+                </div>
+                <div className="text-lg font-bold" style={{ color: "#D3B267" }}>
+                  100%
+                </div>
+                <div className="text-[9px] mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>
+                  MTD & SA ready
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Bar chart */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.45 }}
+              className="rounded-lg border p-2.5"
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(211,178,103,0.12)",
+              }}
+            >
+              <div className="flex justify-between items-center mb-2">
+                <div className="text-[9px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)" }}>
+                  Monthly Revenue
+                </div>
+                <div className="text-[8px] px-1.5 py-0.5 rounded" style={{ background: "rgba(211,178,103,0.15)", color: "rgba(211,178,103,0.7)" }}>
+                  FY 2025
+                </div>
+              </div>
+
+              <div
+                className="flex items-end gap-1"
+                style={{ height: 72 }}
+              >
+                {barData.map((bar, i) => (
+                  <motion.div
+                    key={i}
+                    className="flex-1 flex flex-col items-center gap-1"
+                  >
+                    {/* Bar */}
+                    <motion.div
+                      className="w-full rounded-t-sm"
+                      style={{
+                        background: bar.isHigh
+                          ? "linear-gradient(to top, #D3B267CC, #D3B26788)"
+                          : "rgba(211,178,103,0.35)",
+                        transformOrigin: "bottom",
+                        height: `${bar.height}px`,
+                      }}
+                      initial={{ scaleY: 0 }}
+                      animate={
+                        inView && !shouldReduce
+                          ? { scaleY: 1 }
+                          : { scaleY: 1 }
+                      }
+                      transition={{
+                        duration: 0.7,
+                        delay: bar.delay,
+                        ease: [0.34, 1.56, 0.64, 1],
+                      }}
+                    />
+                    {/* Month label */}
+                    <div className="text-[8px] text-gray-400" style={{ color: "rgba(255,255,255,0.3)" }}>
+                      {bar.month}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* ── Right column ── */}
+          <div className="lg:col-span-2 flex flex-col items-center gap-3">
+            {/* Orbit */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={inView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="relative"
+              style={{ width: 110, height: 110 }}
+            >
+              {/* Orbit ring */}
+              <div
+                className="absolute inset-0 rounded-full"
+                style={{
+                  border: "1px solid rgba(211,178,103,0.2)",
+                  top: 1,
+                  left: 1,
+                  width: 108,
+                  height: 108,
                 }}
               />
-            ))}
-          </div>
 
-          {/* ── Trend line SVG (lower portion, visually over bars) ── */}
-          <svg
-            className="absolute pointer-events-none"
-            style={{ top: 0, left: 10, right: 10, width: "calc(100% - 20px)", height: "100%", zIndex: 15 }}
-            viewBox={`0 0 300 ${CHART_H}`}
-            preserveAspectRatio="none"
-          >
-            <defs>
-              <linearGradient id="trend-fill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stopColor="#0E5D6B" stopOpacity="0.18" />
-                <stop offset="100%" stopColor="#0E5D6B" stopOpacity="0.01" />
-              </linearGradient>
-            </defs>
-            <motion.path
-              d={LFILL} fill="url(#trend-fill)"
-              initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.8, delay: 2.5 }}
-            />
-            <motion.path
-              d={LINE}
-              fill="none" stroke="#0E5D6B" strokeWidth="2.6"
-              strokeLinecap="round" strokeLinejoin="round"
-              initial={{ pathLength: 0, opacity: 0 }}
-              animate={inView ? { pathLength: 1, opacity: 1 } : {}}
-              transition={{ duration: 1.5, delay: 1.1, ease: "easeInOut" }}
-            />
-            {/* Moving dot at line tip */}
-            <motion.circle
-              cx={300} cy={76} r={5}
-              fill="white" stroke="#0E5D6B" strokeWidth="2.4"
-              initial={{ scale: 0, opacity: 0 }}
-              animate={inView ? { scale: 1, opacity: 1 } : {}}
-              transition={{ delay: 2.65, type: "spring", stiffness: 280 }}
-            />
-            <motion.circle
-              cx={300} cy={76} r={5}
-              fill="none" stroke="#0E5D6B" strokeWidth="1.5"
-              initial={{ scale: 1, opacity: 0 }}
-              animate={inView ? { scale: [1, 3], opacity: [0.6, 0] } : {}}
-              transition={{ duration: 1.5, delay: 2.75, repeat: Infinity, ease: "easeOut" }}
-            />
-          </svg>
-        </div>
-      </motion.div>
+              {/* Center */}
+              <div
+                className="absolute inset-0 m-auto w-14 h-14 rounded-full flex items-center justify-center border-2"
+                style={{
+                  background: "rgba(211,178,103,0.15)",
+                  borderColor: "rgba(211,178,103,0.35)",
+                  animation: "shimmer 3s ease-in-out infinite",
+                }}
+              >
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 26 26"
+                  fill="none"
+                  style={{ opacity: 0.9 }}
+                >
+                  <path
+                    d="M5 7h16M5 12h10M5 17h13"
+                    stroke="#D3B267"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                  />
+                  <rect
+                    x="16"
+                    y="14"
+                    width="7"
+                    height="9"
+                    rx="1.5"
+                    fill="#D3B267"
+                    opacity={0.7}
+                  />
+                </svg>
+              </div>
 
-      {/* ── Calculator card ── */}
-      <motion.div
-        initial={{ opacity: 0, x: 22, y: -16 }}
-        animate={inView ? { opacity: 1, x: 0, y: 0 } : {}}
-        transition={{ duration: 0.65, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute z-20 rounded-2xl overflow-hidden"
-        style={{
-          top: 0, right: 0, width: 100,
-          background: "rgba(255,255,255,0.98)",
-          border: "1.5px solid rgba(14,93,107,0.12)",
-          boxShadow: "0 14px 40px rgba(14,93,107,0.18)",
-        }}
-      >
-        {/* Display */}
-        <div className="px-3 pt-3 pb-2 text-right" style={{
-          background: "linear-gradient(135deg,rgba(14,93,107,0.07),rgba(211,178,103,0.09))",
-          borderBottom: "1px solid rgba(14,93,107,0.08)",
-        }}>
-          <div className="text-[9px] font-semibold uppercase tracking-wider mb-0.5" style={{ color: "#94A3B8" }}>TAX SAVED</div>
-          <div className="text-sm font-bold" style={{ color: "#0E5D6B", lineHeight: 1 }}>
-            <CalcDisplay go={inView} />
-          </div>
-        </div>
-        {/* Keys */}
-        <div className="p-2.5 flex flex-col gap-1.5">
-          {CALC_ROWS.map((row, ri) => (
-            <div key={ri} className="flex gap-1.5">
-              {row.map((key, ki) => (
+              {/* Orbiting coins */}
+              {shouldReduce ? (
+                // Static positions for reduced motion
+                <>
+                  <div className="absolute w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold" style={{ top: 0, left: "50%", transform: "translate(-50%, -50%)", background: "var(--pri)", border: "1.5px solid var(--sec)", color: "#D3B267" }}>£</div>
+                  <div className="absolute w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold" style={{ top: "50%", left: 0, transform: "translate(-50%, -50%) rotate(120deg)", background: "var(--pri)", border: "1.5px solid var(--sec)", color: "#D3B267" }}>$</div>
+                  <div className="absolute w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold" style={{ top: "50%", right: 0, transform: "translate(50%, -50%) rotate(240deg)", background: "var(--pri)", border: "1.5px solid var(--sec)", color: "#D3B267" }}>€</div>
+                </>
+              ) : (
+                <>
+                  <motion.div
+                    className="absolute w-[18px] h-[18px] rounded-full flex items-center justify-center text-[9px] font-bold"
+                    style={{
+                      top: 0,
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      background: "var(--pri)",
+                      border: "1.5px solid var(--sec)",
+                      color: "#D3B267",
+                    }}
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                  >
+                    £
+                  </motion.div>
+                  <motion.div
+                    className="absolute w-[18px] h-[18px] rounded-full flex items-center justify-center text-[9px] font-bold"
+                    style={{
+                      top: "50%",
+                      left: 0,
+                      transform: "translate(-50%, -50%) rotate(120deg)",
+                      background: "var(--pri)",
+                      border: "1.5px solid var(--sec)",
+                      color: "#D3B267",
+                    }}
+                    animate={{ rotate: [120, 480] }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                  >
+                    $
+                  </motion.div>
+                  <motion.div
+                    className="absolute w-[18px] h-[18px] rounded-full flex items-center justify-center text-[9px] font-bold"
+                    style={{
+                      top: "50%",
+                      right: 0,
+                      transform: "translate(50%, -50%) rotate(240deg)",
+                      background: "var(--pri)",
+                      border: "1.5px solid var(--sec)",
+                      color: "#D3B267",
+                    }}
+                    animate={{ rotate: [240, 600] }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                  >
+                    €
+                  </motion.div>
+                </>
+              )}
+            </motion.div>
+
+            {/* Status stack */}
+            <div className="w-full space-y-2">
+              {["MTD Compliant", "VAT Filed", "P&L Balanced"].map((text, i) => (
                 <motion.div
-                  key={ki}
-                  initial={{ opacity: 0, scale: 0.4 }}
-                  animate={inView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.22, type: "spring", stiffness: 220, delay: 0.85 + (ri * 3 + ki) * 0.04 }}
-                  className="flex-1 flex items-center justify-center rounded-lg font-semibold cursor-default"
-                  style={{ height: 22, background: key.bg, color: key.color, fontSize: 11 }}
-                >{key.label}</motion.div>
+                  key={i}
+                  initial={{ opacity: 0, x: 10 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.4 + i * 0.15 }}
+                  className="flex items-center gap-2 px-2 py-1.5 rounded-md text-[9px]"
+                  style={{
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(211,178,103,0.15)",
+                    color: "rgba(255,255,255,0.7)",
+                  }}
+                >
+                  <div
+                    className="w-3.5 h-3.5 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={{
+                      background: "rgba(76,193,125,0.2)",
+                      border: "1px solid rgba(76,193,125,0.5)",
+                    }}
+                  >
+                    <svg width="7" height="7" viewBox="0 0 8 8">
+                      <path
+                        d="M1.5 4L3.5 6L6.5 2"
+                        stroke="#4cc17d"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        fill="none"
+                      />
+                    </svg>
+                  </div>
+                  {text}
+                </motion.div>
               ))}
             </div>
-          ))}
-          <div className="flex gap-1.5">
-            {[
-              { label: "0", flex: 2, bg: "#F1F5F9", color: "#334155" },
-              { label: ".", flex: 1, bg: "#F1F5F9", color: "#334155" },
-              { label: "=", flex: 1, bg: "linear-gradient(135deg,#E8CA8A,#D3B267)", color: "#0A3F4A" },
-            ].map((k, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.4 }}
-                animate={inView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.22, type: "spring", stiffness: 220, delay: 1.46 + i * 0.05 }}
-                className="flex items-center justify-center rounded-lg font-bold cursor-default"
-                style={{ flex: k.flex, height: 22, background: k.bg, color: k.color, fontSize: 11 }}
-              >{k.label}</motion.div>
-            ))}
           </div>
         </div>
-      </motion.div>
 
-      {/* ── Growth badge ── */}
-      <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={inView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.6, delay: 1.8, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute z-30 flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl"
-        style={{
-          top: 168, right: -4,
-          background: "rgba(255,255,255,0.98)",
-          border: "1.5px solid rgba(14,93,107,0.1)",
-          boxShadow: "0 8px 28px rgba(14,93,107,0.15)",
-        }}
-      >
-        <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "rgba(34,197,94,0.12)" }}>
-          <TrendingUp size={15} style={{ color: "#16A34A" }} />
-        </div>
-        <div>
-          <div className="text-[10px] font-semibold uppercase tracking-wider" style={{ color: "#94A3B8" }}>Growth</div>
-          <motion.div className="text-sm font-bold" style={{ color: "#16A34A" }}
-            initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ delay: 2.2 }}>
-            +24.5%
-          </motion.div>
-        </div>
+        {/* ── Bottom ticker ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.8 }}
+          className="rounded-lg overflow-hidden"
+          style={{
+            background: "rgba(255,255,255,0.04)",
+            border: "1px solid rgba(211,178,103,0.12)",
+          }}
+        >
+          <div className="flex items-center gap-2 px-3 py-2">
+            <div
+              className="text-[8px] uppercase tracking-wider whitespace-nowrap"
+              style={{ color: "rgba(211,178,103,0.5)", flexShrink: 0 }}
+            >
+              Updates
+            </div>
+            <div className="h-4 flex-1 overflow-hidden relative">
+              <motion.div
+                className="absolute inset-0 flex flex-col"
+                initial={{ y: 0 }}
+                animate={
+                  inView && !shouldReduce
+                    ? {
+                        y: [
+                          0,
+                          -16,
+                          -16,
+                          -32,
+                          -32,
+                          -48,
+                          -48,
+                          0,
+                        ],
+                      }
+                    : { y: 0 }
+                }
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "linear",
+                  repeatDelay: 2,
+                }}
+              >
+                {[...TICKER_ITEMS, TICKER_ITEMS[0]].map((item, i) => (
+                  <div
+                    key={i}
+                    className="h-4 flex items-center gap-1.5 text-[10px]"
+                    style={{ color: "#D3B267", fontWeight: 500 }}
+                  >
+                    <span style={{ color: "#4cdd8e", fontSize: 8 }}>●</span>
+                    {item}
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
+        </motion.div>
       </motion.div>
-
-      {/* ── Tax Saved badge (bottom-left) ── */}
-      <motion.div
-        initial={{ opacity: 0, x: -22, y: 8 }}
-        animate={inView ? { opacity: 1, x: 0, y: 0 } : {}}
-        transition={{ duration: 0.6, delay: 1.6, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute z-30 flex items-center gap-3 px-4 py-3 rounded-2xl"
-        style={{
-          bottom: 6, left: -14,
-          background: "rgba(255,255,255,0.98)",
-          border: "1.5px solid rgba(14,93,107,0.1)",
-          boxShadow: "0 8px 28px rgba(14,93,107,0.14)",
-        }}
-      >
-        <div className="w-9 h-9 rounded-xl flex items-center justify-center font-bold text-base"
-          style={{ background: "rgba(14,93,107,0.1)", color: "#0E5D6B" }}>£</div>
-        <div>
-          <div className="text-[10px] font-semibold uppercase tracking-wider" style={{ color: "#94A3B8" }}>Tax Saved</div>
-          <div className="text-sm font-bold" style={{ color: "#1A2B2E" }}>£12,450</div>
-        </div>
-      </motion.div>
-
-      {/* ── Floating orbs ── */}
-      <motion.div animate={{ y: [-5, 5, -5], x: [0, 3, 0] }}
-        transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute rounded-full pointer-events-none"
-        style={{ width: 10, height: 10, bottom: 68, right: 22, background: "#D3B267", opacity: 0.6, boxShadow: "0 0 16px rgba(211,178,103,0.7)", zIndex: 0 }}
-      />
-      <motion.div animate={{ y: [3, -5, 3] }}
-        transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-        className="absolute rounded-full pointer-events-none"
-        style={{ width: 7, height: 7, top: 80, left: 14, background: "#0E5D6B", opacity: 0.5, boxShadow: "0 0 12px rgba(14,93,107,0.65)", zIndex: 0 }}
-      />
     </div>
   );
 }
