@@ -31,13 +31,18 @@ body {
   background: var(--bg);
   color: var(--text-primary);
   font-family: var(--font-source-sans), 'Source Sans 3', system-ui, sans-serif;
+  font-weight: 500;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-lexend), 'Lexend', system-ui, sans-serif;
   font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 /* Custom scrollbar */

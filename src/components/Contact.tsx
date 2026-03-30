@@ -57,7 +57,7 @@ export default function Contact() {
               Ready to Unlock Your{" "}
               <span style={{ color: "#0E5D6B" }}>Financial Potential?</span>
             </h2>
-            <p className="text-lg leading-relaxed mb-12" style={{ color: "#64748B" }}>
+            <p className="text-lg leading-relaxed mb-12" style={{ color: "#475569" }}>
               Contact QuickSolve Accountants today. Let&apos;s discuss how our tailored
               solutions can drive your success. Our expert team is here 24/7.
             </p>
@@ -80,7 +80,7 @@ export default function Contact() {
                   <div>
                     <div
                       className="text-xs font-semibold uppercase tracking-wider mb-1"
-                      style={{ color: "#94A3B8" }}
+                      style={{ color: "#64748B" }}
                     >
                       {item.label}
                     </div>

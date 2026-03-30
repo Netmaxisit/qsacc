@@ -1,26 +1,51 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
+
+const services = [
+  { label: "Book Keeping", href: "/book-keeping" },
+  { label: "Small Business", href: "/small-business-services" },
+  { label: "VAT Solutions", href: "/vat-solutions" },
+  { label: "Business Startup", href: "/business-startup" },
+  { label: "Payroll", href: "/payroll" },
+  { label: "Individual Services", href: "/services-for-individuals" },
+  { label: "MTD ITSA", href: "/mtd-itsa" },
+];
 
 const navLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#services", label: "Services" },
-  { href: "#about", label: "About" },
-  { href: "#mtd", label: "MTD ITSA" },
-  { href: "#contact", label: "Contact" },
+  { href: "/", label: "Home" },
+  { href: "/#services", label: "Services", hasDropdown: true },
+  { href: "/#about", label: "About" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const dropdownTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleServicesMouseEnter = () => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+      dropdownTimeoutRef.current = null;
+    }
+    setServicesDropdownOpen(true);
+  };
+
+  const handleServicesMouseLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setServicesDropdownOpen(false);
+    }, 200); // 200ms delay before closing
+  };
 
   return (
     <motion.nav
@@ -41,7 +66,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-3 group">
+          <a href="/" className="flex items-center gap-3 group">
             <div
               className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-white text-lg shadow-md transition-transform duration-200 group-hover:scale-105"
               style={{ background: "linear-gradient(135deg, #0E5D6B, #1A7A8C)" }}
@@ -67,18 +92,65 @@ export default function Navbar() {
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium transition-all duration-200 relative group"
-                style={{ color: scrolled ? "#374151" : "rgba(255,255,255,0.88)" }}
+              <div
+                key={link.label}
+                className="relative"
+                onMouseEnter={() => link.hasDropdown && handleServicesMouseEnter()}
+                onMouseLeave={() => link.hasDropdown && handleServicesMouseLeave()}
               >
-                {link.label}
-                <span
-                  className="absolute -bottom-0.5 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 rounded-full"
-                  style={{ background: "#D3B267" }}
-                />
-              </a>
+                <a
+                  href={link.href}
+                  className="text-sm font-medium transition-all duration-200 relative group flex items-center gap-1"
+                  style={{ color: scrolled ? "#374151" : "rgba(255,255,255,0.88)" }}
+                >
+                  {link.label}
+                  {link.hasDropdown && (
+                    <ChevronDown
+                      size={14}
+                      className={`transition-transform duration-200 ${servicesDropdownOpen ? "rotate-180" : ""}`}
+                    />
+                  )}
+                  <span
+                    className="absolute -bottom-0.5 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 rounded-full"
+                    style={{ background: "#D3B267" }}
+                  />
+                </a>
+
+                {/* Services Dropdown */}
+                {link.hasDropdown && servicesDropdownOpen && (
+                  <motion.div
+                    onMouseEnter={handleServicesMouseEnter}
+                    onMouseLeave={handleServicesMouseLeave}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-0 mt-2 w-64 rounded-xl shadow-xl overflow-hidden z-50"
+                    style={{ background: "#ffffff", border: "1px solid rgba(14,93,107,0.1)" }}
+                  >
+                    <div className="py-2">
+                      {services.map((service) => (
+                        <a
+                          key={service.href}
+                          href={service.href}
+                          className="block px-4 py-3 text-sm transition-colors hover:bg-teal-50"
+                          style={{ color: "#475569" }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.color = "#0E5D6B";
+                            e.currentTarget.style.background = "rgba(14,93,107,0.04)";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.color = "#475569";
+                            e.currentTarget.style.background = "transparent";
+                          }}
+                        >
+                          {service.label}
+                        </a>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </div>
             ))}
           </div>
 
@@ -132,25 +204,75 @@ export default function Navbar() {
             }}
           >
             <div className="px-4 py-5 flex flex-col gap-1">
-              {navLinks.map((link, i) => (
+              {/* Home */}
+              <motion.a
+                href="/"
+                onClick={() => setMenuOpen(false)}
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0 }}
+                className="py-3 px-4 rounded-xl font-medium transition-colors text-gray-700 hover:text-[#0E5D6B] hover:bg-teal-50"
+              >
+                Home
+              </motion.a>
+
+              {/* Services (parent link) */}
+              <motion.a
+                href="/#services"
+                onClick={() => setMenuOpen(false)}
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.06 }}
+                className="py-3 px-4 rounded-xl font-medium transition-colors text-gray-700 hover:text-[#0E5D6B] hover:bg-teal-50"
+              >
+                Services
+              </motion.a>
+
+              {/* Services sub-items (indented) */}
+              {services.map((service, i) => (
                 <motion.a
-                  key={link.href}
-                  href={link.href}
+                  key={service.href}
+                  href={service.href}
                   onClick={() => setMenuOpen(false)}
                   initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.06 }}
-                  className="py-3 px-4 rounded-xl font-medium transition-colors text-gray-700 hover:text-[#0E5D6B] hover:bg-teal-50"
+                  transition={{ delay: 0.12 + i * 0.06 }}
+                  className="py-3 pl-10 pr-4 rounded-xl font-medium transition-colors text-gray-600 hover:text-[#0E5D6B] hover:bg-teal-50 text-sm"
                 >
-                  {link.label}
+                  {service.label}
                 </motion.a>
               ))}
+
+              {/* About */}
+              <motion.a
+                href="/#about"
+                onClick={() => setMenuOpen(false)}
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 }}
+                className="py-3 px-4 rounded-xl font-medium transition-colors text-gray-700 hover:text-[#0E5D6B] hover:bg-teal-50"
+              >
+                About
+              </motion.a>
+
+              {/* Contact */}
+              <motion.a
+                href="/#contact"
+                onClick={() => setMenuOpen(false)}
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.36 }}
+                className="py-3 px-4 rounded-xl font-medium transition-colors text-gray-700 hover:text-[#0E5D6B] hover:bg-teal-50"
+              >
+                Contact
+              </motion.a>
+
               <motion.a
                 href="#contact"
                 onClick={() => setMenuOpen(false)}
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
+                transition={{ delay: 0.42 }}
                 className="mt-3 py-3.5 px-4 rounded-xl text-center font-semibold"
                 style={{ background: "#D3B267", color: "#0A3F4A" }}
               >

@@ -1,20 +1,20 @@
 import { MapPin, Phone, Mail } from "lucide-react";
 
 const services = [
-  "Book Keeping",
-  "Small Business Services",
-  "VAT Solutions",
-  "Business Startups",
-  "Payroll",
-  "Services for Individuals",
+  { label: "Book Keeping", href: "/book-keeping" },
+  { label: "Small Business Services", href: "/small-business-services" },
+  { label: "VAT Solutions", href: "/vat-solutions" },
+  { label: "Business Startups", href: "/business-startup" },
+  { label: "Payroll", href: "/payroll" },
+  { label: "Services for Individuals", href: "/services-for-individuals" },
 ];
 
 const quickLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About Us", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "MTD ITSA", href: "#mtd" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/#about" },
+  { label: "Services", href: "/#services" },
+  { label: "MTD ITSA", href: "/#mtd" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function Footer() {
@@ -71,10 +71,10 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-bold text-base mb-6">Our Services</h4>
             <ul className="space-y-3">
-              {services.map((s, i) => (
+              {services.map((service, i) => (
                 <li key={i}>
                   <a
-                    href="#services"
+                    href={service.href}
                     className="flex items-center gap-2.5 text-sm transition-colors duration-200 hover:text-white"
                     style={{ color: "rgba(255,255,255,0.55)" }}
                   >
@@ -82,7 +82,7 @@ export default function Footer() {
                       className="w-1.5 h-1.5 rounded-full flex-shrink-0"
                       style={{ background: "#D3B267" }}
                     />
-                    {s}
+                    {service.label}
                   </a>
                 </li>
               ))}
@@ -124,7 +124,7 @@ export default function Footer() {
                 Are you prepared for Making Tax Digital? Get ready now before April 2026.
               </div>
               <a
-                href="#mtd"
+                href="/mtd-itsa"
                 className="text-xs font-semibold"
                 style={{ color: "#D3B267" }}
               >

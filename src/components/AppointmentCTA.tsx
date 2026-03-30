@@ -4,7 +4,12 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight, CalendarCheck } from "lucide-react";
 
-export default function AppointmentCTA() {
+interface AppointmentCTAProps {
+  tagline?: string;
+  headline?: string;
+}
+
+export default function AppointmentCTA({ tagline, headline }: AppointmentCTAProps) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
@@ -45,8 +50,13 @@ export default function AppointmentCTA() {
             </div>
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-2" style={{ color: "#0A3F4A" }}>
-                Ready to Unlock Your Financial Potential?
+                {headline || "Ready to Unlock Your Financial Potential?"}
               </h2>
+              {tagline && (
+                <p className="text-base font-semibold mb-2" style={{ color: "#0E5D6B" }}>
+                  {tagline}
+                </p>
+              )}
               <p className="text-base" style={{ color: "rgba(10,63,74,0.75)" }}>
                 Contact QuickSolve Accountants today. Let&apos;s discuss how our tailored
                 solutions can drive your success.

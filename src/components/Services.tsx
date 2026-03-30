@@ -18,42 +18,42 @@ const services = [
     title: "Book Keeping",
     description:
       "Streamlined bookkeeping solutions customized to your business requirements, ensuring accurate, up-to-date financial records.",
-    href: "#contact",
+    href: "/book-keeping",
   },
   {
     icon: Building2,
     title: "Small Business Services",
     description:
       "Comprehensive financial solutions for small businesses — from bookkeeping and tax preparation to strategic business advisory.",
-    href: "#contact",
+    href: "/small-business-services",
   },
   {
     icon: Receipt,
     title: "VAT Solutions",
     description:
       "VAT solutions tailored to your business needs, ensuring compliance, maximising savings, and reducing administrative burden.",
-    href: "#contact",
+    href: "/vat-solutions",
   },
   {
     icon: Rocket,
     title: "Business Startup",
     description:
       "Comprehensive startup support — business structuring, registration, financial planning, tax planning, and ongoing mentorship.",
-    href: "#contact",
+    href: "/business-startup",
   },
   {
     icon: Users,
     title: "Payroll",
     description:
       "Efficient payroll processing ensuring compliance, accuracy, on-time payments, and seamless employee benefits administration.",
-    href: "#contact",
+    href: "/payroll",
   },
   {
     icon: UserCheck,
     title: "Services for Individuals",
     description:
       "Personal tax preparation, retirement planning, investment advisory, estate planning, and regular financial health checkups.",
-    href: "#contact",
+    href: "/services-for-individuals",
   },
 ];
 
@@ -149,7 +149,7 @@ function ServiceCard({
       >
         {service.title}
       </h3>
-      <p className="relative z-10 text-sm leading-relaxed flex-1 mb-6" style={{ color: "#64748B" }}>
+      <p className="relative z-10 text-sm leading-relaxed flex-1 mb-6" style={{ color: "#475569" }}>
         {service.description}
       </p>
 
@@ -199,7 +199,7 @@ export default function Services() {
             animate={headingInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-base leading-relaxed max-w-xl mx-auto"
-            style={{ color: "#64748B" }}
+            style={{ color: "#4B5563" }}
           >
             From bookkeeping to retirement planning, we offer comprehensive financial
             services tailored to your unique needs — all under one roof.

@@ -74,7 +74,7 @@ export default function About() {
                 <span style={{ color: "#0E5D6B" }}>Personal Finances</span>
               </h2>
 
-              <p className="text-lg leading-relaxed mb-8" style={{ color: "#64748B" }}>
+              <p className="text-lg leading-relaxed mb-8" style={{ color: "#475569" }}>
                 Quick Solve Accountants is your go-to partner for efficient financial
                 management solutions in Manchester. With a commitment to integrity and
                 professionalism, we empower our clients to achieve their financial goals
