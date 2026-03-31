@@ -50,7 +50,7 @@ export default function AppointmentCTA({ tagline, headline }: AppointmentCTAProp
             </div>
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-2" style={{ color: "#0A3F4A" }}>
-                {headline || "Ready to Unlock Your Financial Potential?"}
+                {headline || "Ready to Get Your Books in Order?"}
               </h2>
               {tagline && (
                 <p className="text-base font-semibold mb-2" style={{ color: "#0E5D6B" }}>

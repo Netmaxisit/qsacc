@@ -17,9 +17,9 @@ const sourceSans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  title: "QuickSolve Accountants — Expert Accounting Services in Manchester",
+  title: "QuickSolve Accountants — Expert Accounting & Bookkeeping in Manchester",
   description:
-    "QuickSolve Accountants offers expert financial management in Manchester. Tailored accounting, tax, bookkeeping, and advisory services for businesses and individuals.",
+    "QuickSolve Accountants provides reliable accounting support in Manchester. Accurate bookkeeping, tax preparation, and clear reporting for businesses and individuals.",
 };
 
 export default function RootLayout({

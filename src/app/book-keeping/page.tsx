@@ -19,7 +19,7 @@ const benefits = [
     icon: BookOpen,
     title: "Accurate Records",
     description:
-      "We ensure your financial records are consistently accurate and up-to-date, providing clear insight into your financial landscape.",
+      "We ensure your records are consistently accurate and up-to-date, providing clear insight into your business.",
   },
   {
     icon: TrendingUp,
@@ -35,9 +35,9 @@ const benefits = [
   },
   {
     icon: CheckCircle2,
-    title: "Financial Clarity",
+    title: "Bookkeeping Clarity",
     description:
-      "Experience the advantages of streamlined and dependable bookkeeping. Partner with us to achieve greater financial control and drive your business towards success.",
+      "Experience the advantages of streamlined and dependable bookkeeping. Partner with us to achieve greater control and drive your business towards success.",
   },
 ];
 
@@ -295,8 +295,8 @@ export default function BookKeepingPage() {
                 style={{ color: "rgba(255,255,255,0.75)" }}
               >
                 At Quick Solve Accountants, we deliver efficient and precise bookkeeping services,
-                meticulously tailored to your business&apos;s unique needs. We ensure your financial records
-                are consistently accurate and up-to-date, providing clear insight into your financial landscape.
+                meticulously tailored to your business&apos;s unique needs. We ensure your records
+                are consistently accurate and up-to-date, providing clear insight into your business.
               </motion.p>
 
               <motion.div
@@ -361,7 +361,7 @@ export default function BookKeepingPage() {
                 Free up your valuable time and energy to concentrate on expanding your business.
                 Let our expert team manage your bookkeeping with precision and care.
                 With Quick Solve Accountants, you can confidently focus on your core operations
-                while we ensure your financial data is impeccably maintained.
+                while we ensure your data is impeccably maintained.
               </p>
 
               <p>
@@ -421,12 +421,12 @@ export default function BookKeepingPage() {
               className="text-2xl md:text-3xl font-bold mb-6 leading-tight"
               style={{ color: "#0E5D6B" }}
             >
-              Partner with Quick Solve Accountants for Financial Clarity
+              Partner with Quick Solve Accountants for Bookkeeping Clarity
             </h2>
             <p className="text-base leading-relaxed mb-6" style={{ color: "#475569" }}>
               Experience the advantages of streamlined and dependable bookkeeping by partnering
               with Quick Solve Accountants. Contact us today to discuss your needs and discover
-              how we can help you achieve greater financial control and drive your business towards success.
+              how we can help you achieve greater control and drive your business towards success.
             </p>
             <a
               href="#contact"

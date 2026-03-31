@@ -197,7 +197,7 @@ export default function HeroGraphic() {
                 className="text-[10px] font-semibold uppercase tracking-wider"
                 style={{ color: "rgba(255,255,255,0.5)" }}
               >
-                Financial Dashboard
+                Accounting & Tax Dashboard
               </div>
               <div className="text-sm font-bold" style={{ color: "#fff" }}>
                 Real-time overview
@@ -514,17 +514,17 @@ export default function HeroGraphic() {
                 animate={
                   inView && !shouldReduce
                     ? {
-                        y: [
-                          0,
-                          -16,
-                          -16,
-                          -32,
-                          -32,
-                          -48,
-                          -48,
-                          0,
-                        ],
-                      }
+                      y: [
+                        0,
+                        -16,
+                        -16,
+                        -32,
+                        -32,
+                        -48,
+                        -48,
+                        0,
+                      ],
+                    }
                     : { y: 0 }
                 }
                 transition={{

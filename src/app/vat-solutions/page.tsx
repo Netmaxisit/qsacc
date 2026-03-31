@@ -21,13 +21,13 @@ const benefits = [
     icon: Calculator,
     title: "Tax Planning",
     description:
-      "Our expert team offers strategic tax planning to minimise liabilities and optimise deductions. We analyse your financial situation to identify opportunities for tax savings, helping you achieve your business goals while remaining compliant with regulations.",
+      "Our expert team offers strategic tax planning to minimise liabilities and optimise deductions. We analyse your accounts to identify opportunities for tax savings, helping you achieve your business goals while remaining compliant with HMRC regulations.",
   },
   {
     icon: FileCheck,
     title: "Tax Compliance",
     description:
-      "Staying compliant with tax regulations is essential for avoiding penalties and maintaining financial health. We assist with tax return preparation, filing, and ongoing compliance, ensuring accuracy and timeliness to meet all deadlines.",
+      "Staying compliant with tax regulations is essential for avoiding penalties and maintaining healthy accounts. We assist with tax return preparation, filing, and ongoing compliance, ensuring accuracy and timeliness to meet all deadlines.",
   },
   {
     icon: Receipt,

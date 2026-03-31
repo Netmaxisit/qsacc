@@ -6,7 +6,7 @@ import { ShieldCheck, Award, Users, TrendingUp, Sparkles } from "lucide-react";
 
 const features = [
   "Flexible Services",
-  "24/7 Online Support",
+
   "Business Improvement",
   "Commitment to Integrity",
   "Expert Team",
@@ -14,7 +14,7 @@ const features = [
 ];
 
 const stats = [
-  { icon: Award, value: 25, suffix: "+", label: "Years Experience" },
+  { icon: Award, value: 15, suffix: "+", label: "Years Experience" },
   { icon: Users, value: 500, suffix: "+", label: "Happy Clients" },
   { icon: TrendingUp, value: 98, suffix: "%", label: "Retention Rate" },
 ];
@@ -63,7 +63,7 @@ export default function About() {
                 }}
               >
                 <Sparkles size={14} />
-                25 Years of Excellence
+                15+ Years of Excellence
               </div>
 
               <h2
@@ -75,10 +75,7 @@ export default function About() {
               </h2>
 
               <p className="text-lg leading-relaxed mb-8" style={{ color: "#475569" }}>
-                Quick Solve Accountants is your go-to partner for efficient financial
-                management solutions in Manchester. With a commitment to integrity and
-                professionalism, we empower our clients to achieve their financial goals
-                swiftly and effectively.
+                Quick Solve Accountants is your go-to partner for efficient accounting and bookkeeping solutions in Manchester. With a commitment to accuracy and professionalism, we help you stay on top of your records and keep everything running smoothly.
               </p>
 
               {/* Feature badges */}
@@ -155,11 +152,10 @@ export default function About() {
 
               <div className="relative z-10">
                 <h3 className="text-2xl font-bold text-white mb-3 leading-tight">
-                  Financial Solutions That Help Your Business Grow
+                  Expert Accounting Services for Growing Businesses
                 </h3>
                 <p className="text-sm leading-relaxed mb-10" style={{ color: "rgba(255,255,255,0.65)" }}>
-                  From strategic planning to risk management, we provide the expertise
-                  and support you need to thrive in today&apos;s competitive landscape.
+                  From bookkeeping and tax returns to payroll and compliance, we deliver reliable support to keep your business running smoothly.
                 </p>
 
                 {/* Stats */}

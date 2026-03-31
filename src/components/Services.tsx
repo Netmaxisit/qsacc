@@ -17,42 +17,42 @@ const services = [
     icon: BookOpen,
     title: "Book Keeping",
     description:
-      "Streamlined bookkeeping solutions customized to your business requirements, ensuring accurate, up-to-date financial records.",
+      "Professional bookkeeping services in Manchester, keeping your records accurate, organised, and fully up to date at all times.",
     href: "/book-keeping",
   },
   {
     icon: Building2,
     title: "Small Business Services",
     description:
-      "Comprehensive financial solutions for small businesses — from bookkeeping and tax preparation to strategic business advisory.",
+      "Expert accounting services for small businesses in Manchester — from bookkeeping and tax returns to ongoing business support.",
     href: "/small-business-services",
   },
   {
     icon: Receipt,
     title: "VAT Solutions",
     description:
-      "VAT solutions tailored to your business needs, ensuring compliance, maximising savings, and reducing administrative burden.",
+      "Reliable VAT services in Manchester, ensuring accurate returns, full compliance, and less time spent on admin.",
     href: "/vat-solutions",
   },
   {
     icon: Rocket,
     title: "Business Startup",
     description:
-      "Comprehensive startup support — business structuring, registration, financial planning, tax planning, and ongoing mentorship.",
+      "Complete startup accounting support in Manchester — from business registration to bookkeeping, tax setup, and ongoing guidance.",
     href: "/business-startup",
   },
   {
     icon: Users,
     title: "Payroll",
     description:
-      "Efficient payroll processing ensuring compliance, accuracy, on-time payments, and seamless employee benefits administration.",
+      "Managed payroll services in Manchester, ensuring accurate pay runs, compliance, and smooth handling of employee records.",
     href: "/payroll",
   },
   {
     icon: UserCheck,
     title: "Services for Individuals",
     description:
-      "Personal tax preparation, retirement planning, investment advisory, estate planning, and regular financial health checkups.",
+      "Personal tax returns and accounting support in Manchester, helping you stay organised, accurate, and fully compliant.",
     href: "/services-for-individuals",
   },
 ];
@@ -201,8 +201,7 @@ export default function Services() {
             className="text-base leading-relaxed max-w-xl mx-auto"
             style={{ color: "#4B5563" }}
           >
-            From bookkeeping to retirement planning, we offer comprehensive financial
-            services tailored to your unique needs — all under one roof.
+            From bookkeeping to tax returns and payroll, we offer comprehensive accounting services in Manchester — all under one roof.
           </motion.p>
         </div>
 

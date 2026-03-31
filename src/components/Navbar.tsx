@@ -56,10 +56,10 @@ export default function Navbar() {
       style={
         scrolled
           ? {
-              background: "rgba(255,255,255,0.97)",
-              backdropFilter: "blur(16px)",
-              boxShadow: "0 1px 24px 0 rgba(14,93,107,0.10)",
-            }
+            background: "rgba(255,255,255,0.97)",
+            backdropFilter: "blur(16px)",
+            boxShadow: "0 1px 24px 0 rgba(14,93,107,0.10)",
+          }
           : { background: "transparent" }
       }
     >
@@ -78,7 +78,7 @@ export default function Navbar() {
                 className="font-bold text-lg leading-tight transition-colors duration-300"
                 style={{ color: scrolled ? "#0E5D6B" : "#ffffff" }}
               >
-                QuickSolve
+                Quicksolve
               </div>
               <div
                 className="text-xs transition-colors duration-300"

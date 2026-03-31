@@ -5,9 +5,9 @@ import { useRef } from "react";
 
 const partners = [
   { name: "IRIS", description: "Accounting Software" },
-  { name: "NEST", description: "Pension Provider" },
-  { name: "QuickBooks", description: "Cloud Accounting" },
-  { name: "Senta by IRIS", description: "Practice Management" },
+  { name: "nest", description: "Pension Provider" },
+  { name: "quickbooks", description: "Cloud Accounting" },
+  { name: "xero", description: "Cloud Accounting" },
 ];
 
 export default function Partners() {

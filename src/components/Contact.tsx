@@ -54,8 +54,8 @@ export default function Contact() {
               className="text-4xl md:text-5xl font-bold mb-6 leading-tight"
               style={{ color: "#1A2B2E" }}
             >
-              Ready to Unlock Your{" "}
-              <span style={{ color: "#0E5D6B" }}>Financial Potential?</span>
+              Ready to Take Control of Your{" "}
+              <span style={{ color: "#0E5D6B" }}>Tax & Accounts?</span>
             </h2>
             <p className="text-lg leading-relaxed mb-12" style={{ color: "#475569" }}>
               Contact QuickSolve Accountants today. Let&apos;s discuss how our tailored
@@ -137,7 +137,7 @@ export default function Contact() {
 
                 <h3 className="text-3xl font-bold text-white mb-4">Make An Appointment</h3>
                 <p className="leading-relaxed mb-10" style={{ color: "rgba(255,255,255,0.7)" }}>
-                  Ready to unlock your financial potential? Let&apos;s discuss how our tailored
+                  Ready to Get Your Accounts in Order? Let&apos;s discuss how our tailored
                   solutions can drive your success. Our expert team is ready to help.
                 </p>
 
@@ -168,7 +168,7 @@ export default function Contact() {
                 >
                   {[
                     ["Free", "Initial Consultation"],
-                    ["25+", "Years Experience"],
+                    ["15+", "Years Experience"],
                     ["24/7", "Support Available"],
                   ].map(([num, text], i) => (
                     <div key={i}>

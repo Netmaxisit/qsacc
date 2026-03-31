@@ -28,13 +28,13 @@ const benefits = [
     icon: PiggyBank,
     title: "Retirement Planning",
     description:
-      "Secure your financial future with our comprehensive retirement planning services. We work closely with you to analyse your current financial position, define your retirement aspirations, and create robust strategies — utilising pensions, investments, and other vehicles — to help you achieve your goals.",
+      "Secure your long-term tax efficiency with our comprehensive retirement planning services. We work closely with you to analyse your current accounting position, define your retirement aspirations, and create robust strategies — utilising pensions, investments, and other vehicles — to help you achieve your goals.",
   },
   {
     icon: TrendingUp,
-    title: "Investment Advisory",
+    title: "Financial Health Checkups",
     description:
-      "Informed investment decisions are crucial for building long-term wealth. Our experienced advisors provide personalised investment guidance based on your risk tolerance, financial objectives, and time horizon. We help you construct a diversified investment portfolio tailored to your individual needs.",
+      "Regular account health checkups are vital to keep your tax and accounting plan aligned with your evolving goals. Our team conducts comprehensive reviews of your accounts, identifying areas for improvement and opportunities for tax savings, ensuring you remain on track to achieve your objectives.",
   },
   {
     icon: Heart,
@@ -287,7 +287,7 @@ export default function ServicesForIndividualsPage() {
                 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6"
               >
                 Your Partner in{" "}
-                <span style={{ color: "#D3B267" }}>Financial Well-being</span>
+                <span style={{ color: "#D3B267" }}>Tax Efficiency</span>
               </motion.h1>
 
               <motion.p
@@ -297,9 +297,9 @@ export default function ServicesForIndividualsPage() {
                 className="text-lg md:text-xl leading-relaxed mb-10"
                 style={{ color: "rgba(255,255,255,0.75)" }}
               >
-                At Quick Solve Accountants, we offer a comprehensive suite of personalised financial services
+                At Quick Solve Accountants, we offer a comprehensive suite of personalised tax and accounting services
                 designed to meet your unique individual needs. Whether you&apos;re planning for the future,
-                managing investments, or navigating the complexities of taxation, our expert guidance and
+                managing your self-assessment, or navigating the complexities of taxation, our expert guidance and
                 dedicated support are with you every step of the way.
               </motion.p>
 

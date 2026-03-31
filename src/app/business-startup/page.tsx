@@ -32,9 +32,9 @@ const benefits = [
   },
   {
     icon: TrendingUp,
-    title: "Financial Planning & Budgeting",
+    title: "Tax Planning & Budgeting",
     description:
-      "Financial planning is essential for the success of any startup. Our team helps you develop a comprehensive financial plan and budget, outlining your projected income, expenses, and cash flow projections. We provide strategic guidance to help you manage your finances effectively and allocate resources efficiently.",
+      "Accounting and tax planning is essential for the success of any startup. Our team helps you develop a comprehensive bookkeeping plan and budget, outlining your projected income, expenses, and cash flow projections. We provide strategic guidance to help you manage your accounts effectively and allocate resources efficiently.",
   },
   {
     icon: Lightbulb,
@@ -430,10 +430,9 @@ export default function BusinessStartupPage() {
               <div>
                 <h3 className="text-xl font-bold mb-3" style={{ color: "#1A2B2E" }}>Bookkeeping and Accounting Services</h3>
                 <p>
-                  Accurate financial record-keeping is essential for startups to track their performance and make informed decisions.
-                  Our bookkeeping and accounting services ensure that your financial records are organised, up-to-date, and compliant
-                  with accounting standards. We handle the day-to-day financial tasks, allowing you to focus on growing your business.
-                </p>
+                  Accurate bookkeeping and record-keeping is essential for startups to track their performance and make informed decisions.
+                  Our accounting and tax compliance services ensure that your accounts are organised, up-to-date, and compliant
+                  with HMRC standards. We handle the day-to-day accounting tasks, allowing you to focus on growing your business.   </p>
               </div>
             </div>
           </motion.div>

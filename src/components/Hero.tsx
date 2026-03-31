@@ -6,10 +6,10 @@ import { ArrowRight, CheckCircle2, ChevronDown } from "lucide-react";
 import HeroGraphic from "./HeroGraphic";
 
 const stats = [
-  { number: "25+", label: "Years Experience" },
+  { number: "15+", label: "Years Experience" },
   { number: "500+", label: "Happy Clients" },
   { number: "98%", label: "Client Retention" },
-  { number: "£50M+", label: "Tax Savings" },
+  { number: "£500K+", label: "Records Managed" },
 ];
 
 const words = ["Expert", "Solutions", "For", "Your", "Accounting", "Success"];
@@ -23,14 +23,14 @@ export default function Hero() {
   const smoothY = useSpring(rawY, spring);
 
   // Parallax layers (different depths)
-  const orb1X  = useTransform(smoothX, [-1, 1], [-28, 28]);
-  const orb1Y  = useTransform(smoothY, [-1, 1], [-18, 18]);
-  const orb2X  = useTransform(smoothX, [-1, 1], [18, -18]);
-  const orb2Y  = useTransform(smoothY, [-1, 1], [12, -12]);
-  const gridX  = useTransform(smoothX, [-1, 1], [-6, 6]);
-  const gridY  = useTransform(smoothY, [-1, 1], [-4, 4]);
+  const orb1X = useTransform(smoothX, [-1, 1], [-28, 28]);
+  const orb1Y = useTransform(smoothY, [-1, 1], [-18, 18]);
+  const orb2X = useTransform(smoothX, [-1, 1], [18, -18]);
+  const orb2Y = useTransform(smoothY, [-1, 1], [12, -12]);
+  const gridX = useTransform(smoothX, [-1, 1], [-6, 6]);
+  const gridY = useTransform(smoothY, [-1, 1], [-4, 4]);
   const graphX = useTransform(smoothX, [-1, 1], [14, -14]);
-  const graphY = useTransform(smoothY, [-1, 1], [9,  -9]);
+  const graphY = useTransform(smoothY, [-1, 1], [9, -9]);
 
   // Cursor spotlight
   const [spot, setSpot] = useState({ x: 50, y: 50, on: false });
@@ -38,12 +38,12 @@ export default function Hero() {
   const onMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-    const ny = ((e.clientY - rect.top)  / rect.height) * 2 - 1;
+    const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1;
     rawX.set(nx);
     rawY.set(ny);
     setSpot({
       x: ((e.clientX - rect.left) / rect.width) * 100,
-      y: ((e.clientY - rect.top)  / rect.height) * 100,
+      y: ((e.clientY - rect.top) / rect.height) * 100,
       on: true,
     });
   };
@@ -176,9 +176,7 @@ export default function Hero() {
                 className="text-lg leading-relaxed mb-10"
                 style={{ color: "rgba(255,255,255,0.72)" }}
               >
-                QuickSolve Accountants offers expert financial management in Manchester.
-                Our tailored accounting, tax, and advisory services help you achieve your
-                financial goals with integrity and efficiency.
+                Quicksolve Accountants provides expert accounting and bookkeeping support in Manchester. Our tailored services keep your records accurate, organised, and fully compliant.
               </motion.p>
 
               <motion.div

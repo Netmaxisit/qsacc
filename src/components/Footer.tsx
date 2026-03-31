@@ -39,9 +39,9 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-sm leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.55)" }}>
-              Your go-to partner for efficient financial management solutions in
+              Your go-to partner for efficient accounts management solutions in
               Manchester. Expert accounting, tax, and business advisory services with
-              25+ years of experience.
+              15+ years of experience.
             </p>
             <div className="space-y-3">
               <div className="flex items-start gap-3 text-sm" style={{ color: "rgba(255,255,255,0.55)" }}>

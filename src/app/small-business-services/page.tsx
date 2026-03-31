@@ -22,7 +22,7 @@ const benefits = [
     icon: BookOpen,
     title: "Accurate Bookkeeping",
     description:
-      "Our meticulous bookkeeping services ensure that your financial records are accurate and up-to-date. From managing daily transactions to reconciling accounts, we handle the details so you can focus on running your business.",
+      "Our bookkeeping services ensure that your accounts are accurate and up-to-date. From managing daily transactions to reconciling accounts, we handle the details so you can focus on running your business.",
   },
   {
     icon: Calculator,
@@ -32,15 +32,15 @@ const benefits = [
   },
   {
     icon: TrendingUp,
-    title: "Financial Planning",
+    title: "Tax Planning & Forecasting",
     description:
-      "Planning for the future is essential for small business success. Our financial planning services help you establish clear financial goals and develop strategies to achieve them. Whether you're looking to expand your business, invest in new opportunities, or plan for retirement, we're here to help you chart a course for financial success.",
+      "Planning for the future is essential for small business success. Our tax planning and forecasting services help you establish clear accounting goals and develop strategies to achieve them. Whether you're looking to expand your business, reduce your tax bill, or plan for retirement, we're here to help you chart a course for lasting growth.",
   },
   {
     icon: Scale,
     title: "Business Advisory",
     description:
-      "As trusted advisors, we offer strategic guidance to help you make informed business decisions. From analysing financial data to identifying growth opportunities, we provide the insights and support you need to drive your business forward.",
+      "As trusted advisors, we offer strategic guidance to help you make informed business decisions. From analysing your accounts to identifying growth opportunities, we provide the insights and support you need to drive your business forward.",
   },
 ];
 
@@ -286,7 +286,7 @@ export default function SmallBusinessServicesPage() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6"
               >
-                Comprehensive Financial Solutions for{" "}
+                Comprehensive Accounting & Tax Solutions for{" "}
                 <span style={{ color: "#D3B267" }}>Small Businesses</span>
               </motion.h1>
 
@@ -297,7 +297,7 @@ export default function SmallBusinessServicesPage() {
                 className="text-lg md:text-xl leading-relaxed mb-10"
                 style={{ color: "rgba(255,255,255,0.75)" }}
               >
-                At Quick Solve Accountants, we recognize that small businesses have unique financial needs.
+                At Quick Solve Accountants, we recognize that small businesses have unique accounting and tax needs.
                 That&apos;s why we offer a comprehensive suite of services designed specifically to support
                 the growth and success of small enterprises.
               </motion.p>
@@ -361,7 +361,7 @@ export default function SmallBusinessServicesPage() {
 
             <div className="space-y-6 text-base leading-relaxed" style={{ color: "#475569" }}>
               <p>
-                At Quick Solve Accountants, we recognize that small businesses have unique financial needs.
+                At Quick Solve Accountants, we recognize that small businesses have unique accounting and tax needs.
                 That&apos;s why we offer a comprehensive suite of services designed specifically to support
                 the growth and success of small enterprises.
               </p>
@@ -391,7 +391,7 @@ export default function SmallBusinessServicesPage() {
               Our Small Business Services
             </h2>
             <p className="max-w-2xl mx-auto" style={{ color: "#475569" }}>
-              Tailored financial solutions to help your small business thrive.
+              Tailored accounting and tax solutions to help your small business thrive.
             </p>
           </motion.div>
 
