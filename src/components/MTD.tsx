@@ -247,7 +247,7 @@ export default function MTD() {
             </div>
 
             <a
-              href="#contact"
+              href="/contact"
               className="group flex items-center justify-center gap-2 w-full py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 hover:scale-[1.02] hover:shadow-lg"
               style={{ background: "#D3B267", color: "#0A3F4A" }}
             >

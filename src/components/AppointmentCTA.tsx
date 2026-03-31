@@ -65,7 +65,7 @@ export default function AppointmentCTA({ tagline, headline }: AppointmentCTAProp
           </motion.div>
 
           <motion.a
-            href="#contact"
+            href="/contact"
             initial={{ opacity: 0, x: 20 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}

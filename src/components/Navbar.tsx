@@ -18,7 +18,7 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/#services", label: "Services", hasDropdown: true },
   { href: "/#about", label: "About" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -165,7 +165,7 @@ export default function Navbar() {
               0161 478 9412
             </a>
             <a
-              href="#contact"
+              href="/contact"
               className="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:scale-105 hover:shadow-lg"
               style={{
                 background: "#D3B267",
@@ -257,7 +257,7 @@ export default function Navbar() {
 
               {/* Contact */}
               <motion.a
-                href="/#contact"
+                href="/contact"
                 onClick={() => setMenuOpen(false)}
                 initial={{ opacity: 0, x: -16 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -268,7 +268,7 @@ export default function Navbar() {
               </motion.a>
 
               <motion.a
-                href="#contact"
+                href="/contact"
                 onClick={() => setMenuOpen(false)}
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}

@@ -309,7 +309,7 @@ export default function SmallBusinessServicesPage() {
                 className="flex flex-wrap justify-center gap-4"
               >
                 <a
-                  href="#contact"
+                  href="/contact"
                   className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-base transition-all duration-200 hover:scale-105 hover:shadow-2xl"
                   style={{
                     background: "#D3B267",
@@ -460,7 +460,7 @@ export default function SmallBusinessServicesPage() {
               of your small business. With our expert guidance and personalised approach, you can focus on what you do best — growing your business.
             </p>
             <a
-              href="#contact"
+              href="/contact"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-base transition-all duration-200 hover:scale-105"
               style={{ background: "#D3B267", color: "#0A3F4A", boxShadow: "0 6px 20px rgba(211,178,103,0.25)" }}
             >

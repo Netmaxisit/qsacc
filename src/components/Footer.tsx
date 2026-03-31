@@ -14,7 +14,7 @@ const quickLinks = [
   { label: "About Us", href: "/#about" },
   { label: "Services", href: "/#services" },
   { label: "MTD ITSA", href: "/#mtd" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Footer() {
