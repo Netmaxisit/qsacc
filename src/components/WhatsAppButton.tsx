@@ -12,7 +12,7 @@ export default function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
-      className="fixed bottom-6 right-6 z-50 flex items-center gap-3 group"
+      className="fixed bottom-6 right-6 z-50 flex items-center group"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -20,14 +20,14 @@ export default function WhatsAppButton() {
       <AnimatePresence>
         {hovered && (
           <motion.div
-            initial={{ opacity: 0, x: 8 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 8 }}
-            transition={{ duration: 0.2 }}
-            className="rounded-xl px-3 py-2 text-sm font-medium whitespace-nowrap shadow-lg"
-            style={{ background: "#ffffff", color: "#1A2B2E", boxShadow: "0 4px 20px rgba(0,0,0,0.12)" }}
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 4 }}
+            transition={{ duration: 0.15 }}
+            className="absolute bottom-16 left-1/2 -translate-x-1/2 rounded-lg px-3 py-1.5 text-xs font-semibold whitespace-nowrap"
+            style={{ background: "#D3B267", color: "#1A2B2E" }}
           >
-            Chat on WhatsApp
+            WhatsApp
           </motion.div>
         )}
       </AnimatePresence>
@@ -36,8 +36,8 @@ export default function WhatsAppButton() {
       <motion.div
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        className="w-14 h-14 rounded-full flex items-center justify-center shadow-xl"
-        style={{ background: "#25D366" }}
+        className="w-14 h-14 rounded-full flex items-center justify-center"
+        style={{ background: "#25D366", boxShadow: "0 4px 16px rgba(37,211,102,0.45)" }}
       >
         {/* Pulse ring */}
         <span

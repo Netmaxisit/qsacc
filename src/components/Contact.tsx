@@ -57,7 +57,7 @@ export default function Contact() {
               Ready to Take Control of Your{" "}
               <span style={{ color: "#0E5D6B" }}>Tax & Accounts?</span>
             </h2>
-            <p className="text-lg leading-relaxed mb-12" style={{ color: "#475569" }}>
+            <p className="text-lg leading-relaxed mb-12" style={{ color: "#374151" }}>
               Contact QuickSolve Accountants today. Let&apos;s discuss how our tailored
               solutions can drive your success. Our expert team is here 24/7.
             </p>
@@ -178,7 +178,7 @@ export default function Contact() {
                       >
                         {num}
                       </div>
-                      <div className="text-xs" style={{ color: "rgba(255,255,255,0.55)" }}>
+                      <div className="text-xs" style={{ color: "rgba(255,255,255,0.80)" }}>
                         {text}
                       </div>
                     </div>

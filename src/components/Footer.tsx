@@ -38,20 +38,20 @@ export default function Footer() {
                 </div>
               </div>
             </div>
-            <p className="text-sm leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.55)" }}>
+            <p className="text-sm leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.80)" }}>
               Your go-to partner for efficient accounts management solutions in
               Manchester. Expert accounting, tax, and business advisory services with
               15+ years of experience.
             </p>
             <div className="space-y-3">
-              <div className="flex items-start gap-3 text-sm" style={{ color: "rgba(255,255,255,0.55)" }}>
+              <div className="flex items-start gap-3 text-sm" style={{ color: "rgba(255,255,255,0.80)" }}>
                 <MapPin size={15} className="mt-0.5 flex-shrink-0" style={{ color: "#D3B267" }} />
                 1040 Stockport Road, Manchester, M19 3WX
               </div>
               <a
                 href="tel:01614789412"
                 className="flex items-center gap-3 text-sm transition-colors duration-200 hover:text-white"
-                style={{ color: "rgba(255,255,255,0.55)" }}
+                style={{ color: "rgba(255,255,255,0.80)" }}
               >
                 <Phone size={15} style={{ color: "#D3B267" }} />
                 0161 478 9412
@@ -59,7 +59,7 @@ export default function Footer() {
               <a
                 href="mailto:info@qsaccountants.co.uk"
                 className="flex items-center gap-3 text-sm transition-colors duration-200 hover:text-white"
-                style={{ color: "rgba(255,255,255,0.55)" }}
+                style={{ color: "rgba(255,255,255,0.80)" }}
               >
                 <Mail size={15} style={{ color: "#D3B267" }} />
                 info@qsaccountants.co.uk
@@ -76,7 +76,7 @@ export default function Footer() {
                   <a
                     href={service.href}
                     className="flex items-center gap-2.5 text-sm transition-colors duration-200 hover:text-white"
-                    style={{ color: "rgba(255,255,255,0.55)" }}
+                    style={{ color: "rgba(255,255,255,0.80)" }}
                   >
                     <span
                       className="w-1.5 h-1.5 rounded-full flex-shrink-0"
@@ -98,7 +98,7 @@ export default function Footer() {
                   <a
                     href={href}
                     className="flex items-center gap-2.5 text-sm transition-colors duration-200 hover:text-white"
-                    style={{ color: "rgba(255,255,255,0.55)" }}
+                    style={{ color: "rgba(255,255,255,0.80)" }}
                   >
                     <span
                       className="w-1.5 h-1.5 rounded-full flex-shrink-0"

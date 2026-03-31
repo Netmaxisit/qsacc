@@ -188,7 +188,7 @@ export default function Reviews() {
             className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium mb-5"
             style={{
               border: "1px solid #CBD5E1",
-              color: "#475569",
+              color: "#374151",
               background: "transparent",
             }}
           >
@@ -279,7 +279,7 @@ export default function Reviews() {
                     ))}
                   </div>
                 </div>
-                <div className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.6)" }} suppressHydrationWarning>
+                <div className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.80)" }} suppressHydrationWarning>
                   {totalCount !== null ? `${totalCount} Google reviews` : "Google reviews"}
                 </div>
               </div>

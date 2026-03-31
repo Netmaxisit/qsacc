@@ -128,7 +128,7 @@ export default function MTD() {
                   />
                   <div>
                     <div className="font-semibold text-white text-sm">{item.date}</div>
-                    <div className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.6)" }}>
+                    <div className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.80)" }}>
                       {item.desc}
                     </div>
                   </div>
@@ -177,7 +177,7 @@ export default function MTD() {
               <h3 className="text-xl font-bold text-white">What Will Change?</h3>
             </div>
 
-            <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,0.65)" }}>
+            <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,0.85)" }}>
               Instead of submitting one annual tax return, you will need to:
             </p>
 

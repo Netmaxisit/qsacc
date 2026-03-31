@@ -134,13 +134,13 @@ export default function Navbar() {
                           key={service.href}
                           href={service.href}
                           className="block px-4 py-3 text-sm transition-colors hover:bg-teal-50"
-                          style={{ color: "#475569" }}
+                          style={{ color: "#374151" }}
                           onMouseEnter={(e) => {
                             e.currentTarget.style.color = "#0E5D6B";
                             e.currentTarget.style.background = "rgba(14,93,107,0.04)";
                           }}
                           onMouseLeave={(e) => {
-                            e.currentTarget.style.color = "#475569";
+                            e.currentTarget.style.color = "#374151";
                             e.currentTarget.style.background = "transparent";
                           }}
                         >
