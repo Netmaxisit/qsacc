@@ -74,7 +74,7 @@ export default function About() {
                 <span style={{ color: "#0E5D6B" }}>Personal Finances</span>
               </h2>
 
-              <p className="text-lg leading-relaxed mb-8" style={{ color: "#475569" }}>
+              <p className="text-lg leading-relaxed mb-8" style={{ color: "#374151" }}>
                 Quick Solve Accountants is your go-to partner for efficient accounting and bookkeeping solutions in Manchester. With a commitment to accuracy and professionalism, we help you stay on top of your records and keep everything running smoothly.
               </p>
 
@@ -154,7 +154,7 @@ export default function About() {
                 <h3 className="text-2xl font-bold text-white mb-3 leading-tight">
                   Expert Accounting Services for Growing Businesses
                 </h3>
-                <p className="text-sm leading-relaxed mb-10" style={{ color: "rgba(255,255,255,0.65)" }}>
+                <p className="text-sm leading-relaxed mb-10" style={{ color: "rgba(255,255,255,0.85)" }}>
                   From bookkeeping and tax returns to payroll and compliance, we deliver reliable support to keep your business running smoothly.
                 </p>
 
@@ -181,7 +181,7 @@ export default function About() {
                         <AnimatedCounter target={s.value} />
                         {s.suffix}
                       </div>
-                      <div className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>
+                      <div className="text-xs" style={{ color: "rgba(255,255,255,0.80)" }}>
                         {s.label}
                       </div>
                     </motion.div>
@@ -199,7 +199,7 @@ export default function About() {
                       className="p-4 rounded-xl"
                       style={{ background: "rgba(211,178,103,0.12)", border: "1px solid rgba(211,178,103,0.2)" }}
                     >
-                      <div className="text-xs mb-1" style={{ color: "rgba(255,255,255,0.55)" }}>
+                      <div className="text-xs mb-1" style={{ color: "rgba(255,255,255,0.80)" }}>
                         {item.label}
                       </div>
                       <div className="text-sm font-semibold text-white">{item.value}</div>

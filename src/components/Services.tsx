@@ -149,7 +149,7 @@ function ServiceCard({
       >
         {service.title}
       </h3>
-      <p className="relative z-10 text-sm leading-relaxed flex-1 mb-6" style={{ color: "#475569" }}>
+      <p className="relative z-10 text-sm leading-relaxed flex-1 mb-6" style={{ color: "#374151" }}>
         {service.description}
       </p>
 

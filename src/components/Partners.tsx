@@ -22,7 +22,7 @@ export default function Partners() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
           className="text-center text-xs font-semibold uppercase tracking-[0.2em] mb-10"
-          style={{ color: "#64748B" }}
+          style={{ color: "#0F172A" }}
         >
           Trusted Partners &amp; Professional Affiliations
         </motion.p>
@@ -47,7 +47,7 @@ export default function Partners() {
               >
                 {partner.name}
               </div>
-              <div className="text-xs" style={{ color: "#64748B" }}>
+              <div className="text-sm" style={{ color: "#0F172A" }}>
                 {partner.description}
               </div>
             </motion.div>
@@ -58,8 +58,8 @@ export default function Partners() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="text-center text-sm leading-relaxed mt-10 max-w-xl mx-auto"
-          style={{ color: "#64748B" }}
+          className="text-center text-base leading-relaxed mt-10 max-w-xl mx-auto"
+          style={{ color: "#0F172A" }}
         >
           The platforms we use enhance our accuracy and efficiency, while our partnerships
           reflect our commitment to professional standards and innovation.
