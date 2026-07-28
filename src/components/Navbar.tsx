@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
+import BrandWordmark from "@/components/BrandWordmark";
+import BrandIcon from "@/components/BrandIcon";
 
 const services = [
   { label: "Book Keeping", href: "/book-keeping" },
@@ -44,7 +46,7 @@ export default function Navbar() {
   const handleServicesMouseLeave = () => {
     dropdownTimeoutRef.current = setTimeout(() => {
       setServicesDropdownOpen(false);
-    }, 200); // 200ms delay before closing
+    }, 200);
   };
 
   return (
@@ -52,44 +54,26 @@ export default function Navbar() {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-      style={
-        scrolled
-          ? {
-            background: "rgba(255,255,255,0.97)",
-            backdropFilter: "blur(16px)",
-            boxShadow: "0 1px 24px 0 rgba(14,93,107,0.10)",
-          }
-          : { background: "transparent" }
-      }
+      className="fixed top-0 left-0 right-0 z-50 transition-shadow duration-300"
+      style={{
+        background: "rgba(255,255,255,0.98)",
+        backdropFilter: "blur(12px)",
+        boxShadow: scrolled
+          ? "0 1px 24px rgba(14,93,107,0.12)"
+          : "0 1px 12px rgba(14,93,107,0.08)",
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <a href="/" className="flex items-center gap-3 group">
-            <div
-              className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-white text-lg shadow-md transition-transform duration-200 group-hover:scale-105"
-              style={{ background: "linear-gradient(135deg, #0E5D6B, #1A7A8C)" }}
-            >
-              QS
-            </div>
-            <div>
-              <div
-                className="font-bold text-lg leading-tight transition-colors duration-300"
-                style={{ color: scrolled ? "#0E5D6B" : "#ffffff" }}
-              >
-                Quicksolve
-              </div>
-              <div
-                className="text-xs transition-colors duration-300"
-                style={{ color: scrolled ? "#6B7280" : "rgba(255,255,255,0.65)" }}
-              >
-                Accountants
-              </div>
-            </div>
+        <div className="flex items-center justify-between gap-4 h-20">
+          <a
+            href="/"
+            className="flex items-center gap-2.5 sm:gap-3 shrink-0"
+            aria-label="QuickSolve Accountants home"
+          >
+            <BrandIcon size={48} />
+            <BrandWordmark />
           </a>
 
-          {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <div
@@ -100,13 +84,12 @@ export default function Navbar() {
               >
                 <a
                   href={link.href}
-                  className="text-sm font-medium transition-all duration-200 relative group flex items-center gap-1"
-                  style={{ color: scrolled ? "#374151" : "rgba(255,255,255,0.88)" }}
+                  className="text-base font-semibold transition-all duration-200 relative group flex items-center gap-1 text-gray-700"
                 >
                   {link.label}
                   {link.hasDropdown && (
                     <ChevronDown
-                      size={14}
+                      size={16}
                       className={`transition-transform duration-200 ${servicesDropdownOpen ? "rotate-180" : ""}`}
                     />
                   )}
@@ -116,7 +99,6 @@ export default function Navbar() {
                   />
                 </a>
 
-                {/* Services Dropdown */}
                 {link.hasDropdown && servicesDropdownOpen && (
                   <motion.div
                     onMouseEnter={handleServicesMouseEnter}
@@ -133,8 +115,7 @@ export default function Navbar() {
                         <a
                           key={service.href}
                           href={service.href}
-                          className="block px-4 py-3 text-sm transition-colors hover:bg-teal-50"
-                          style={{ color: "#374151" }}
+                          className="block px-4 py-3 text-sm transition-colors hover:bg-teal-50 text-gray-700"
                           onMouseEnter={(e) => {
                             e.currentTarget.style.color = "#0E5D6B";
                             e.currentTarget.style.background = "rgba(14,93,107,0.04)";
@@ -154,12 +135,10 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-5">
             <a
               href="tel:01614789412"
-              className="flex items-center gap-2 text-sm font-medium transition-colors duration-200"
-              style={{ color: scrolled ? "#0E5D6B" : "rgba(255,255,255,0.88)" }}
+              className="flex items-center gap-2 text-sm font-medium text-[#0E5D6B]"
             >
               <Phone size={15} />
               0161 478 9412
@@ -167,20 +146,15 @@ export default function Navbar() {
             <a
               href="/contact"
               className="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:scale-105 hover:shadow-lg"
-              style={{
-                background: "#D3B267",
-                color: "#0A3F4A",
-              }}
+              style={{ background: "#D3B267", color: "#0A3F4A" }}
             >
               Make Appointment
             </a>
           </div>
 
-          {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden p-2 rounded-lg transition-colors"
-            style={{ color: scrolled ? "#0E5D6B" : "#ffffff" }}
+            className="md:hidden p-2 rounded-lg text-[#0E5D6B]"
             aria-label="Toggle navigation menu"
           >
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -188,7 +162,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -196,39 +169,28 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden overflow-hidden"
-            style={{
-              background: "rgba(255,255,255,0.98)",
-              backdropFilter: "blur(16px)",
-              borderTop: "1px solid rgba(14,93,107,0.1)",
-            }}
+            className="md:hidden overflow-hidden border-t border-[#0E5D6B]/10 bg-white"
           >
             <div className="px-4 py-5 flex flex-col gap-1">
-              {/* Home */}
               <motion.a
                 href="/"
                 onClick={() => setMenuOpen(false)}
                 initial={{ opacity: 0, x: -16 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0 }}
-                className="py-3 px-4 rounded-xl font-medium transition-colors text-gray-700 hover:text-[#0E5D6B] hover:bg-teal-50"
+                className="py-3 px-4 rounded-xl font-medium text-gray-700 hover:text-[#0E5D6B] hover:bg-teal-50"
               >
                 Home
               </motion.a>
-
-              {/* Services (parent link) */}
               <motion.a
                 href="/#services"
                 onClick={() => setMenuOpen(false)}
                 initial={{ opacity: 0, x: -16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.06 }}
-                className="py-3 px-4 rounded-xl font-medium transition-colors text-gray-700 hover:text-[#0E5D6B] hover:bg-teal-50"
+                className="py-3 px-4 rounded-xl font-medium text-gray-700 hover:text-[#0E5D6B] hover:bg-teal-50"
               >
                 Services
               </motion.a>
-
-              {/* Services sub-items (indented) */}
               {services.map((service, i) => (
                 <motion.a
                   key={service.href}
@@ -237,36 +199,31 @@ export default function Navbar() {
                   initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.12 + i * 0.06 }}
-                  className="py-3 pl-10 pr-4 rounded-xl font-medium transition-colors text-gray-600 hover:text-[#0E5D6B] hover:bg-teal-50 text-sm"
+                  className="py-3 pl-10 pr-4 rounded-xl font-medium text-gray-600 hover:text-[#0E5D6B] hover:bg-teal-50 text-sm"
                 >
                   {service.label}
                 </motion.a>
               ))}
-
-              {/* About */}
               <motion.a
                 href="/#about"
                 onClick={() => setMenuOpen(false)}
                 initial={{ opacity: 0, x: -16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
-                className="py-3 px-4 rounded-xl font-medium transition-colors text-gray-700 hover:text-[#0E5D6B] hover:bg-teal-50"
+                className="py-3 px-4 rounded-xl font-medium text-gray-700 hover:text-[#0E5D6B] hover:bg-teal-50"
               >
                 About
               </motion.a>
-
-              {/* Contact */}
               <motion.a
                 href="/contact"
                 onClick={() => setMenuOpen(false)}
                 initial={{ opacity: 0, x: -16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.36 }}
-                className="py-3 px-4 rounded-xl font-medium transition-colors text-gray-700 hover:text-[#0E5D6B] hover:bg-teal-50"
+                className="py-3 px-4 rounded-xl font-medium text-gray-700 hover:text-[#0E5D6B] hover:bg-teal-50"
               >
                 Contact
               </motion.a>
-
               <motion.a
                 href="/contact"
                 onClick={() => setMenuOpen(false)}

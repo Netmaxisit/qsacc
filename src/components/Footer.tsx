@@ -1,4 +1,6 @@
 import { MapPin, Phone, Mail } from "lucide-react";
+import BrandIcon from "@/components/BrandIcon";
+import BrandWordmark from "@/components/BrandWordmark";
 
 const services = [
   { label: "Book Keeping", href: "/book-keeping" },
@@ -24,20 +26,18 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pb-12" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-3 mb-6">
-              <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg"
-                style={{ background: "#D3B267", color: "#0A3F4A" }}
-              >
-                QS
-              </div>
-              <div>
-                <div className="font-bold text-white text-lg leading-tight">QuickSolve</div>
-                <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
-                  Accountants
-                </div>
-              </div>
-            </div>
+            <a
+              href="/"
+              aria-label="QuickSolve Accountants home"
+              className="inline-flex flex-col items-start gap-2.5 mb-6"
+              style={{
+                filter:
+                  "drop-shadow(0 4px 10px rgba(0,0,0,0.55)) drop-shadow(0 1px 3px rgba(0,0,0,0.4))",
+              }}
+            >
+              <BrandIcon size={56} />
+              <BrandWordmark theme="dark" />
+            </a>
             <p className="text-sm leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.80)" }}>
               Your go-to partner for efficient accounts management solutions in
               Manchester. Expert accounting, tax, and business advisory services with
