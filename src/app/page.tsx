@@ -5,6 +5,7 @@ import Services from "@/components/Services";
 import About from "@/components/About";
 import AppointmentCTA from "@/components/AppointmentCTA";
 import Reviews from "@/components/Reviews";
+import WorkspaceGallery from "@/components/WorkspaceGallery";
 import MTD from "@/components/MTD";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -19,6 +20,7 @@ export default function Home() {
       <About />
       <AppointmentCTA />
       <Reviews />
+      <WorkspaceGallery />
       <MTD />
       <Contact />
       <Footer />

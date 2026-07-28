@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "gallery:copy": "bash scripts/copy-gallery-images.sh"
   },
   "dependencies": {
     "@vapi-ai/web": "^2.5.2",
