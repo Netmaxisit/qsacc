@@ -64,3 +64,11 @@ export async function insertLead(
 
   return Number(result.meta.last_row_id);
 }
+
+export async function listLeads(db?: D1Database): Promise<LeadRow[]> {
+  const database = db ?? (await getDb());
+  const { results } = await database
+    .prepare(`SELECT * FROM leads ORDER BY datetime(created_at) DESC`)
+    .all<LeadRow>();
+  return results ?? [];
+}

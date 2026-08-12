@@ -37,6 +37,7 @@ yarn-error.log*
 # opennext / cloudflare
 .open-next/
 .wrangler/
+.admin-seed.sql
 
 # vercel
 .vercel

@@ -1,10 +1,17 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function WhatsAppButton() {
+  const pathname = usePathname();
   const [hovered, setHovered] = useState(false);
+
+  if (pathname.startsWith("/admin")) {
+    return null;
+  }
 
   return (
     <a
