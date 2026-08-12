@@ -72,3 +72,36 @@ export async function listLeads(db?: D1Database): Promise<LeadRow[]> {
     .all<LeadRow>();
   return results ?? [];
 }
+
+export async function countLeads(db?: D1Database): Promise<number> {
+  const database = db ?? (await getDb());
+  const row = await database
+    .prepare(`SELECT COUNT(*) AS total FROM leads`)
+    .first<{ total: number }>();
+  return row?.total ?? 0;
+}
+
+export async function listLeadsPaginated(
+  page: number,
+  limit: number,
+  db?: D1Database
+): Promise<LeadRow[]> {
+  const database = db ?? (await getDb());
+  const offset = (page - 1) * limit;
+  const { results } = await database
+    .prepare(
+      `SELECT * FROM leads ORDER BY datetime(created_at) DESC LIMIT ? OFFSET ?`
+    )
+    .bind(limit, offset)
+    .all<LeadRow>();
+  return results ?? [];
+}
+
+export async function deleteLead(id: number, db?: D1Database): Promise<boolean> {
+  const database = db ?? (await getDb());
+  const result = await database
+    .prepare(`DELETE FROM leads WHERE id = ?`)
+    .bind(id)
+    .run();
+  return (result.meta.changes ?? 0) > 0;
+}
