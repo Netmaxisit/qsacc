@@ -43,7 +43,12 @@ export default function ContactPage() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          source: "contact_page",
+          tags: ["website", "contact"],
+          pageUrl: typeof window !== "undefined" ? window.location.href : undefined,
+        }),
       });
       if (!res.ok) throw new Error("Failed");
       setSubmitted(true);

@@ -30,16 +30,23 @@ export async function GET() {
       `&key=${apiKey}`;
 
     const res = await fetch(url, { next: { revalidate: 3600 } });
-    const data = await res.json();
+    const data = (await res.json()) as {
+      status: string;
+      result?: {
+        reviews?: GoogleReview[];
+        rating?: number;
+        user_ratings_total?: number;
+      };
+    };
 
     if (data.status !== "OK") {
       return NextResponse.json({ error: data.status }, { status: 502 });
     }
 
     const payload: ReviewsResponse = {
-      reviews: data.result.reviews ?? [],
-      rating: data.result.rating ?? 5,
-      user_ratings_total: data.result.user_ratings_total ?? 0,
+      reviews: data.result?.reviews ?? [],
+      rating: data.result?.rating ?? 5,
+      user_ratings_total: data.result?.user_ratings_total ?? 0,
     };
 
     return NextResponse.json(payload);

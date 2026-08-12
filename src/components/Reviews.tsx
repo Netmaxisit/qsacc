@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
-import type { GoogleReview } from "@/app/api/reviews/route";
+import type { GoogleReview, ReviewsResponse } from "@/app/api/reviews/route";
 
 // Curated base reviews — live Google reviews are merged on top of these automatically.
 // Add more here any time you want to feature a specific review.
@@ -142,11 +142,12 @@ export default function Reviews() {
   useEffect(() => {
     fetch("/api/reviews")
       .then((r) => r.json())
-      .then((data) => {
+      .then((raw) => {
+        const data = raw as ReviewsResponse;
         if (data.reviews?.length) {
           // Merge: live reviews first, then curated ones not already in the live set
           const liveNames = new Set(
-            (data.reviews as GoogleReview[]).map((r) => r.author_name.toLowerCase())
+            data.reviews.map((r) => r.author_name.toLowerCase())
           );
           const extras = CURATED_REVIEWS.filter(
             (r) => !liveNames.has(r.author_name.toLowerCase())

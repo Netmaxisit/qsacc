@@ -32,6 +32,7 @@ do
     if [ -n "$(ls -A "$DEST" 2>/dev/null)" ]; then
       echo "Copied $n file(s) from $SRC → $DEST"
       ls -la "$DEST"
+      bash "$ROOT/scripts/sync-gallery-manifest.sh"
       exit 0
     fi
   fi

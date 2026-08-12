@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "qsacc",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-07-28",
+  "compatibility_flags": ["nodejs_compat", "nodejs_compat_populate_process_env"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "qsacc",
+      "database_id": "d972f4cf-915d-40e6-bf4a-ab6ed2db5e9c"
+    }
+  ]
+}

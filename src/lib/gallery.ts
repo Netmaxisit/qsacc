@@ -1,13 +1,10 @@
-import fs from "fs";
-import path from "path";
+import galleryManifest from "@/data/gallery-files.json";
 
-const GALLERY_DIR = path.join(process.cwd(), "public/gallery");
 const IMAGE_EXT = /\.(jpe?g|png|webp)$/i;
 
+/** Gallery list is build-time data (see `scripts/sync-gallery-manifest.sh`). */
 export function getGalleryFilenames(): string[] {
-  if (!fs.existsSync(GALLERY_DIR)) return [];
-  return fs
-    .readdirSync(GALLERY_DIR)
+  return galleryManifest
     .filter((name) => IMAGE_EXT.test(name) && !name.startsWith("."))
     .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
 }

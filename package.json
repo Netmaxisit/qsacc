@@ -7,10 +7,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "gallery:copy": "bash scripts/copy-gallery-images.sh"
+    "gallery:copy": "bash scripts/copy-gallery-images.sh",
+    "gallery:sync": "bash scripts/sync-gallery-manifest.sh",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "cf:secrets": "bash scripts/cf-secrets-from-env.sh",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
+    "db:migrate": "wrangler d1 execute qsacc --remote --file=db/schema.sql",
+    "db:migrate:local": "wrangler d1 execute qsacc --local --file=db/schema.sql"
   },
   "dependencies": {
-    "@vapi-ai/web": "^2.5.2",
+    "@opennextjs/cloudflare": "^1.20.2",
     "framer-motion": "^12.38.0",
     "lucide-react": "^1.7.0",
     "next": "16.2.12",
@@ -18,6 +25,7 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260812.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -25,10 +33,10 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.12",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.114.0"
   },
   "overrides": {
-    "brace-expansion": "^5.0.8",
     "postcss": "^8.5.18",
     "sharp": "^0.35.0"
   }

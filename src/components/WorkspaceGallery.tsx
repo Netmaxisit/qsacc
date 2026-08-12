@@ -32,7 +32,8 @@ export default function WorkspaceGallery() {
               </pre>
               <p className="mt-3 text-xs text-gray-500">
                 Or copy your JPGs into <code className="text-gray-700">public/gallery/</code>{" "}
-                (include <code className="text-gray-700">10.jpg</code> for the large owner photo).
+                (include <code className="text-gray-700">10.jpg</code> for the large owner photo), then run{" "}
+                <code className="text-gray-700">npm run gallery:sync</code> and redeploy.
               </p>
             </div>
           </div>
