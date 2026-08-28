@@ -1,0 +1,34 @@
+# QuickSolve Accountants
+
+> Expert accounting, bookkeeping, tax, and payroll services in Manchester, UK.
+
+QuickSolve Accountants (QS Accountants) helps businesses and individuals with bookkeeping, VAT, payroll, business startups, MTD ITSA compliance, and personal tax returns.
+
+## Contact
+
+- Website: https://qsaccountants.co.uk
+- Phone: 0161 478 9412
+- Email: info@qsaccountants.co.uk
+- Address: 1040 Stockport Road, Manchester, M19 3WX, United Kingdom
+
+## Main pages
+
+- [Home](https://qsaccountants.co.uk/)
+- [Contact](https://qsaccountants.co.uk/contact)
+- [Book Keeping](https://qsaccountants.co.uk/book-keeping)
+- [Small Business Services](https://qsaccountants.co.uk/small-business-services)
+- [VAT Solutions](https://qsaccountants.co.uk/vat-solutions)
+- [Business Startup](https://qsaccountants.co.uk/business-startup)
+- [Payroll](https://qsaccountants.co.uk/payroll)
+- [Services for Individuals](https://qsaccountants.co.uk/services-for-individuals)
+- [MTD ITSA](https://qsaccountants.co.uk/mtd-itsa)
+
+## Services summary
+
+- Bookkeeping and accounts management
+- Small business accounting and advisory
+- VAT returns and compliance
+- New business registration and startup support
+- Payroll processing
+- Self-assessment and personal tax
+- Making Tax Digital (MTD ITSA) readiness
