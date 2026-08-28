@@ -504,7 +504,7 @@ export default function MTDITSAPage() {
               className="text-3xl md:text-4xl font-bold mb-4"
               style={{ color: "#1A2B2E" }}
             >
-              How QuickSolve Accountants Can Help
+              How Quicksolve Accountants Can Help
             </h2>
             <p className="max-w-2xl mx-auto" style={{ color: "#475569" }}>
               We make the transition to MTD simple and stress-free.

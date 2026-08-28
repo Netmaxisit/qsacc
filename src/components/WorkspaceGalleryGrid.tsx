@@ -8,7 +8,7 @@ type Tile = { file: string; alt: string; className: string; aspect: string };
 /** Desktop: [4][5][10] / [6][7][10] / [8----][9----] */
 const TILE_META: Omit<Tile, "file">[] = [
   {
-    alt: "QuickSolve office workspace",
+    alt: "Quicksolve office workspace",
     className: "lg:col-start-1 lg:row-start-1",
     aspect: "4 / 3",
   },
@@ -28,7 +28,7 @@ const TILE_META: Omit<Tile, "file">[] = [
     aspect: "4 / 3",
   },
   {
-    alt: "QuickSolve Accountancy office interior",
+    alt: "Quicksolve Accountancy office interior",
     className: "col-span-2 lg:col-start-1 lg:row-start-3 lg:col-span-2",
     aspect: "16 / 9",
   },
@@ -82,14 +82,14 @@ export default function WorkspaceGalleryGrid({
   const tiles: Tile[] = tileFiles.map((file, i) => ({
     file,
     ...TILE_META[i],
-    alt: TILE_META[i]?.alt ?? "QuickSolve Accountants office",
+    alt: TILE_META[i]?.alt ?? "Quicksolve Accountants office",
     className: TILE_META[i]?.className ?? "",
     aspect: TILE_META[i]?.aspect ?? "4 / 3",
   }));
 
   const featured: Tile = {
     file: featuredFile,
-    alt: "QuickSolve Accountants team member at the Manchester office",
+    alt: "Quicksolve Accountants team member at the Manchester office",
     className:
       "col-span-2 row-span-2 lg:col-start-3 lg:row-start-1 lg:col-span-2 lg:row-span-2",
     aspect: "3 / 4",

@@ -58,7 +58,7 @@ export default function AppointmentCTA({ tagline, headline }: AppointmentCTAProp
                 </p>
               )}
               <p className="text-base" style={{ color: "rgba(10,63,74,0.75)" }}>
-                Contact QuickSolve Accountants today. Let&apos;s discuss how our tailored
+                Contact Quicksolve Accountants today. Let&apos;s discuss how our tailored
                 solutions can drive your success.
               </p>
             </div>

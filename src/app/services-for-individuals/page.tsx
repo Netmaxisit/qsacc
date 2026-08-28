@@ -297,7 +297,7 @@ export default function ServicesForIndividualsPage() {
                 className="text-lg md:text-xl leading-relaxed mb-10"
                 style={{ color: "rgba(255,255,255,0.75)" }}
               >
-                At Quick Solve Accountants, we offer a comprehensive suite of personalised tax and accounting services
+                At Quicksolve Accountants, we offer a comprehensive suite of personalised tax and accounting services
                 designed to meet your unique individual needs. Whether you&apos;re planning for the future,
                 managing your self-assessment, or navigating the complexities of taxation, our expert guidance and
                 dedicated support are with you every step of the way.
@@ -362,7 +362,7 @@ export default function ServicesForIndividualsPage() {
 
             <div className="space-y-6 text-base leading-relaxed" style={{ color: "#475569" }}>
               <p>
-                At Quick Solve Accountants, we offer a comprehensive suite of personalised financial services
+                At Quicksolve Accountants, we offer a comprehensive suite of personalised financial services
                 designed to meet your unique individual needs. Whether you&apos;re planning for the future,
                 managing investments, or navigating the complexities of taxation, our expert guidance and
                 dedicated support are with you every step of the way.
@@ -460,7 +460,7 @@ export default function ServicesForIndividualsPage() {
               Achieve Your Personal Financial Goals
             </h2>
             <p className="text-base leading-relaxed mb-6" style={{ color: "#475569" }}>
-              Let Quick Solve Accountants be your trusted partner in financial well-being.
+              Let Quicksolve Accountants be your trusted partner in financial well-being.
               Contact us today for a consultation and discover how our personalised services
               can help you build, protect, and grow your wealth.
             </p>

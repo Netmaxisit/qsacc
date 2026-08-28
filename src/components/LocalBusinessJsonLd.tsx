@@ -4,7 +4,7 @@ export default function LocalBusinessJsonLd() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "AccountingService",
-    name: "QuickSolve Accountants",
+    name: "Quicksolve Accountants",
     url: siteUrl,
     telephone: "+441614789412",
     email: "info@qsaccountants.co.uk",

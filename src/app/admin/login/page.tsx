@@ -9,7 +9,7 @@ export default function AdminLoginPage() {
       >
         <div className="mb-8 text-center">
           <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "#0E5D6B" }}>
-            QuickSolve CRM
+            Quicksolve CRM
           </p>
           <h1 className="text-2xl font-bold" style={{ color: "#1A2B2E" }}>
             Admin sign in

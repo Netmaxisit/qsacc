@@ -58,7 +58,7 @@ export default function Contact() {
               <span style={{ color: "#0E5D6B" }}>Tax & Accounts?</span>
             </h2>
             <p className="text-lg leading-relaxed mb-12" style={{ color: "#374151" }}>
-              Contact QuickSolve Accountants today. Let&apos;s discuss how our tailored
+              Contact Quicksolve Accountants today. Let&apos;s discuss how our tailored
               solutions can drive your success. Our expert team is here 24/7.
             </p>
 

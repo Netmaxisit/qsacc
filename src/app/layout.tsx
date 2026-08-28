@@ -20,9 +20,9 @@ const sourceSans = Source_Sans_3({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "QuickSolve Accountants — Expert Accounting & Bookkeeping in Manchester",
+  title: "Quicksolve Accountants — Expert Accounting & Bookkeeping in Manchester",
   description:
-    "QuickSolve Accountants provides reliable accounting support in Manchester. Accurate bookkeeping, tax preparation, and clear reporting for businesses and individuals.",
+    "Quicksolve Accountants provides reliable accounting support in Manchester. Accurate bookkeeping, tax preparation, and clear reporting for businesses and individuals.",
   alternates: {
     canonical: "/",
   },
@@ -30,15 +30,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_GB",
     url: siteUrl,
-    siteName: "QuickSolve Accountants",
-    title: "QuickSolve Accountants — Expert Accounting & Bookkeeping in Manchester",
+    siteName: "Quicksolve Accountants",
+    title: "Quicksolve Accountants — Expert Accounting & Bookkeeping in Manchester",
     description:
       "Expert accounting, bookkeeping, tax, VAT, payroll, and MTD ITSA services in Manchester.",
-    images: [{ url: "/qs-icon.png", width: 500, height: 500, alt: "QuickSolve Accountants" }],
+    images: [{ url: "/qs-icon.png", width: 500, height: 500, alt: "Quicksolve Accountants" }],
   },
   twitter: {
     card: "summary",
-    title: "QuickSolve Accountants",
+    title: "Quicksolve Accountants",
     description:
       "Expert accounting and bookkeeping services in Manchester.",
     images: ["/qs-icon.png"],

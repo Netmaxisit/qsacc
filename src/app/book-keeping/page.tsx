@@ -294,7 +294,7 @@ export default function BookKeepingPage() {
                 className="text-lg md:text-xl leading-relaxed mb-10"
                 style={{ color: "rgba(255,255,255,0.75)" }}
               >
-                At Quick Solve Accountants, we deliver efficient and precise bookkeeping services,
+                At Quicksolve Accountants, we deliver efficient and precise bookkeeping services,
                 meticulously tailored to your business&apos;s unique needs. We ensure your records
                 are consistently accurate and up-to-date, providing clear insight into your business.
               </motion.p>
@@ -360,7 +360,7 @@ export default function BookKeepingPage() {
               <p>
                 Free up your valuable time and energy to concentrate on expanding your business.
                 Let our expert team manage your bookkeeping with precision and care.
-                With Quick Solve Accountants, you can confidently focus on your core operations
+                With Quicksolve Accountants, you can confidently focus on your core operations
                 while we ensure your data is impeccably maintained.
               </p>
 
@@ -421,11 +421,11 @@ export default function BookKeepingPage() {
               className="text-2xl md:text-3xl font-bold mb-6 leading-tight"
               style={{ color: "#0E5D6B" }}
             >
-              Partner with Quick Solve Accountants for Bookkeeping Clarity
+              Partner with Quicksolve Accountants for Bookkeeping Clarity
             </h2>
             <p className="text-base leading-relaxed mb-6" style={{ color: "#475569" }}>
               Experience the advantages of streamlined and dependable bookkeeping by partnering
-              with Quick Solve Accountants. Contact us today to discuss your needs and discover
+              with Quicksolve Accountants. Contact us today to discuss your needs and discover
               how we can help you achieve greater control and drive your business towards success.
             </p>
             <a

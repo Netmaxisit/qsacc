@@ -28,7 +28,7 @@ export default function Footer() {
           <div>
             <a
               href="/"
-              aria-label="QuickSolve Accountants home"
+              aria-label="Quicksolve Accountants home"
               className="inline-flex flex-col items-start gap-2.5 mb-6"
               style={{
                 filter:
@@ -137,7 +137,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
-            Copyright 2024 QuickSolve Accountants. All Rights Reserved.
+            Copyright 2024 Quicksolve Accountants. All Rights Reserved.
           </p>
           <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
             1040 Stockport Road, Manchester, M19 3WX, United Kingdom

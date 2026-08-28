@@ -1,4 +1,4 @@
--- Admin users and sessions for QuickSolve CRM dashboard.
+-- Admin users and sessions for Quicksolve CRM dashboard.
 
 CREATE TABLE IF NOT EXISTS users (
   id            INTEGER PRIMARY KEY AUTOINCREMENT,

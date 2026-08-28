@@ -296,7 +296,7 @@ export default function PayrollPage() {
                 className="text-lg md:text-xl leading-relaxed mb-10"
                 style={{ color: "rgba(255,255,255,0.75)" }}
               >
-                Managing payroll can be time-consuming and complex, but Quick Solve Accountants simplifies
+                Managing payroll can be time-consuming and complex, but Quicksolve Accountants simplifies
                 the process with our efficient payroll services tailored to your business needs.
               </motion.p>
 
@@ -359,7 +359,7 @@ export default function PayrollPage() {
 
             <div className="space-y-6 text-base leading-relaxed" style={{ color: "#475569" }}>
               <p>
-                Managing payroll can be time-consuming and complex, but Quick Solve Accountants simplifies
+                Managing payroll can be time-consuming and complex, but Quicksolve Accountants simplifies
                 the process with our efficient payroll services tailored to your business needs.
               </p>
             </div>
@@ -455,7 +455,7 @@ export default function PayrollPage() {
               Simplify Your Payroll Today
             </h2>
             <p className="text-base leading-relaxed mb-6" style={{ color: "#475569" }}>
-              Let Quick Solve Accountants handle your payroll so you can focus on what matters most — running your business.
+              Let Quicksolve Accountants handle your payroll so you can focus on what matters most — running your business.
               Our accurate, compliant, and efficient payroll services ensure your employees are paid correctly and on time,
               every time.
             </p>

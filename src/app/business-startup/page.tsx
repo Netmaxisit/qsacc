@@ -298,7 +298,7 @@ export default function BusinessStartupPage() {
                 style={{ color: "rgba(255,255,255,0.75)" }}
               >
                 Embarking on the journey of starting a new business can be both exciting and challenging.
-                Quick Solve Accountants is here to provide you with comprehensive support and guidance every step of the way.
+                Quicksolve Accountants is here to provide you with comprehensive support and guidance every step of the way.
               </motion.p>
 
               <motion.div
@@ -361,7 +361,7 @@ export default function BusinessStartupPage() {
             <div className="space-y-6 text-base leading-relaxed" style={{ color: "#475569" }}>
               <p>
                 Embarking on the journey of starting a new business can be both exciting and challenging.
-                Quick Solve Accountants is here to provide you with comprehensive support and guidance every step of the way.
+                Quicksolve Accountants is here to provide you with comprehensive support and guidance every step of the way.
               </p>
             </div>
           </motion.div>
@@ -455,7 +455,7 @@ export default function BusinessStartupPage() {
               Ready to Launch Your Business?
             </h2>
             <p className="text-base leading-relaxed mb-6" style={{ color: "#475569" }}>
-              Let Quick Solve Accountants be your partner in business success.
+              Let Quicksolve Accountants be your partner in business success.
               Contact us today to discuss your startup needs and discover how
               our comprehensive support can help you achieve your entrepreneurial goals.
             </p>

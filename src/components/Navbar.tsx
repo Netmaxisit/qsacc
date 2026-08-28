@@ -68,7 +68,7 @@ export default function Navbar() {
           <a
             href="/"
             className="flex items-center gap-2.5 sm:gap-3 shrink-0"
-            aria-label="QuickSolve Accountants home"
+            aria-label="Quicksolve Accountants home"
           >
             <BrandIcon size={48} />
             <BrandWordmark />

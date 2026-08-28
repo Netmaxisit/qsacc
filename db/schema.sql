@@ -1,4 +1,4 @@
--- QuickSolve Accountants (qsacc) — D1 schema
+-- Quicksolve Accountants (qsacc) — D1 schema
 -- CRM-ready leads from website forms and future channels.
 
 CREATE TABLE IF NOT EXISTS leads (

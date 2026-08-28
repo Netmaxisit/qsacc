@@ -297,7 +297,7 @@ export default function VATSolutionsPage() {
                 style={{ color: "rgba(255,255,255,0.75)" }}
               >
                 Navigating tax and VAT requirements can be daunting for businesses of all sizes.
-                Quick Solve Accountants provides comprehensive VAT services to ensure compliance
+                Quicksolve Accountants provides comprehensive VAT services to ensure compliance
                 and maximise savings.
               </motion.p>
 
@@ -361,7 +361,7 @@ export default function VATSolutionsPage() {
             <div className="space-y-6 text-base leading-relaxed" style={{ color: "#475569" }}>
               <p>
                 Navigating tax and VAT requirements can be daunting for businesses of all sizes.
-                Quick Solve Accountants provides comprehensive services to ensure compliance and maximise savings.
+                Quicksolve Accountants provides comprehensive services to ensure compliance and maximise savings.
               </p>
             </div>
           </motion.div>
@@ -454,7 +454,7 @@ export default function VATSolutionsPage() {
               Expert Tax & VAT Solutions for Your Business
             </h2>
             <p className="text-base leading-relaxed mb-6" style={{ color: "#475569" }}>
-              Partner with Quick Solve Accountants for VAT solutions tailored to your business needs.
+              Partner with Quicksolve Accountants for VAT solutions tailored to your business needs.
               Our proactive approach and attention to detail ensure that you remain compliant while
               minimising tax liabilities and maximising savings.
             </p>

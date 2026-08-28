@@ -18,7 +18,7 @@ export default async function AdminDashboardPage() {
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "#D3B267" }}>
-              QuickSolve CRM
+              Quicksolve CRM
             </p>
             <h1 className="text-xl md:text-2xl font-bold text-white">Leads dashboard</h1>
             <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.7)" }}>

@@ -75,7 +75,7 @@ export default function About() {
               </h2>
 
               <p className="text-lg leading-relaxed mb-8" style={{ color: "#374151" }}>
-                Quick Solve Accountants is your go-to partner for efficient accounting and bookkeeping solutions in Manchester. With a commitment to accuracy and professionalism, we help you stay on top of your records and keep everything running smoothly.
+                Quicksolve Accountants is your go-to partner for efficient accounting and bookkeeping solutions in Manchester. With a commitment to accuracy and professionalism, we help you stay on top of your records and keep everything running smoothly.
               </p>
 
               {/* Feature badges */}

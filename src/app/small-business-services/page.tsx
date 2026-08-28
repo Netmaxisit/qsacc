@@ -297,7 +297,7 @@ export default function SmallBusinessServicesPage() {
                 className="text-lg md:text-xl leading-relaxed mb-10"
                 style={{ color: "rgba(255,255,255,0.75)" }}
               >
-                At Quick Solve Accountants, we recognize that small businesses have unique accounting and tax needs.
+                At Quicksolve Accountants, we recognize that small businesses have unique accounting and tax needs.
                 That&apos;s why we offer a comprehensive suite of services designed specifically to support
                 the growth and success of small enterprises.
               </motion.p>
@@ -361,7 +361,7 @@ export default function SmallBusinessServicesPage() {
 
             <div className="space-y-6 text-base leading-relaxed" style={{ color: "#475569" }}>
               <p>
-                At Quick Solve Accountants, we recognize that small businesses have unique accounting and tax needs.
+                At Quicksolve Accountants, we recognize that small businesses have unique accounting and tax needs.
                 That&apos;s why we offer a comprehensive suite of services designed specifically to support
                 the growth and success of small enterprises.
               </p>
@@ -456,7 +456,7 @@ export default function SmallBusinessServicesPage() {
               Your Trusted Partner for Small Business Success
             </h2>
             <p className="text-base leading-relaxed mb-6" style={{ color: "#475569" }}>
-              Partner with Quick Solve Accountants to access a comprehensive range of services tailored to the unique needs
+              Partner with Quicksolve Accountants to access a comprehensive range of services tailored to the unique needs
               of your small business. With our expert guidance and personalised approach, you can focus on what you do best — growing your business.
             </p>
             <a

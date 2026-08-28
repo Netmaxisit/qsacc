@@ -1,8 +1,8 @@
-# QuickSolve Accountants
+# Quicksolve Accountants
 
 > Expert accounting, bookkeeping, tax, and payroll services in Manchester, UK.
 
-QuickSolve Accountants (QS Accountants) helps businesses and individuals with bookkeeping, VAT, payroll, business startups, MTD ITSA compliance, and personal tax returns.
+Quicksolve Accountants (QS Accountants) helps businesses and individuals with bookkeeping, VAT, payroll, business startups, MTD ITSA compliance, and personal tax returns.
 
 ## Contact
 

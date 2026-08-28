@@ -1,4 +1,4 @@
-/** QuickSolve wordmark — QUICK (gold) + SOLVE (teal) + ACCOUNTANTS */
+/** Quicksolve wordmark — QUICK (gold) + SOLVE (teal) + ACCOUNTANTS */
 export default function BrandWordmark({
   className = "",
   size = "md",
