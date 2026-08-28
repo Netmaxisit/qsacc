@@ -34,6 +34,10 @@ export default function RootLayout({
       <body className="min-h-full" suppressHydrationWarning>
         {children}
         <WhatsAppButton />
+        <script
+          src="https://api.elvorastrategies.com/widget.js"
+          data-client="qsaccountants"
+        />
       </body>
     </html>
   );
