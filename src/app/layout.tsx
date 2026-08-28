@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Lexend, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
-import WhatsAppButton from "@/components/WhatsAppButton";
 
 const lexend = Lexend({
   variable: "--font-lexend",
@@ -33,7 +32,6 @@ export default function RootLayout({
     >
       <body className="min-h-full" suppressHydrationWarning>
         {children}
-        <WhatsAppButton />
         <script
           src="https://api.elvorastrategies.com/widget.js"
           data-client="qsaccountants"
