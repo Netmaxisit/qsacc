@@ -1,8 +1,7 @@
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { NextRequest, NextResponse } from "next/server";
 import { insertLead } from "@/lib/leads";
-
-const N8N_WEBHOOK = "https://n8n.netmaxiscloud.dpdns.org/webhook/contact-form";
+import { sendLeadNtfy } from "@/lib/ntfy";
 
 interface ContactBody {
   firstName?: string;
@@ -44,15 +43,6 @@ function parseBody(body: ContactBody) {
   };
 }
 
-async function forwardToN8n(payload: Record<string, unknown>) {
-  const res = await fetch(N8N_WEBHOOK, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
-  return res.ok;
-}
-
 export async function POST(req: NextRequest) {
   try {
     const body = (await req.json()) as ContactBody;
@@ -80,11 +70,14 @@ export async function POST(req: NextRequest) {
 
     const { ctx } = await getCloudflareContext({ async: true });
     ctx.waitUntil(
-      forwardToN8n({
-        ...data,
+      sendLeadNtfy({
         leadId,
-        userAgent,
-        pageUrl,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phone: data.phone,
+        message: data.message,
+        source: data.source,
       }).catch(() => false)
     );
 
