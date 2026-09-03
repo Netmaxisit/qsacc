@@ -2,7 +2,8 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { MapPin, Phone, Mail, Globe, ArrowRight } from "lucide-react";
+import { MapPin, Phone, Mail, Globe, Clock, ArrowRight } from "lucide-react";
+import { officeHoursNavLabel } from "@/lib/office-hours";
 
 const contactItems = [
   {
@@ -27,6 +28,11 @@ const contactItems = [
     label: "Website",
     value: "qsaccountants.co.uk",
     href: "https://qsaccountants.co.uk",
+  },
+  {
+    icon: Clock,
+    label: "Office Timing",
+    value: officeHoursNavLabel,
   },
 ];
 

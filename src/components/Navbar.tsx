@@ -2,9 +2,10 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, ChevronDown } from "lucide-react";
+import { Menu, X, Phone, ChevronDown, Clock } from "lucide-react";
 import BrandWordmark from "@/components/BrandWordmark";
 import BrandIcon from "@/components/BrandIcon";
+import { officeHoursNavLabel } from "@/lib/office-hours";
 
 const services = [
   { label: "Book Keeping", href: "/book-keeping" },
@@ -64,7 +65,7 @@ export default function Navbar() {
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-4 h-20">
+        <div className="flex items-center justify-between gap-4 min-h-20 py-2">
           <a
             href="/"
             className="flex items-center gap-2.5 sm:gap-3 shrink-0"
@@ -135,21 +136,27 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="hidden md:flex items-center gap-5">
-            <a
-              href="tel:01614789412"
-              className="flex items-center gap-2 text-sm font-medium text-[#0E5D6B]"
-            >
-              <Phone size={15} />
-              0161 478 9412
-            </a>
-            <a
-              href="/contact"
-              className="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:scale-105 hover:shadow-lg"
-              style={{ background: "#D3B267", color: "#0A3F4A" }}
-            >
-              Make Appointment
-            </a>
+          <div className="hidden md:flex flex-col items-end gap-1">
+            <div className="flex items-center gap-5">
+              <a
+                href="tel:01614789412"
+                className="flex items-center gap-2 text-sm font-medium text-[#0E5D6B]"
+              >
+                <Phone size={15} />
+                0161 478 9412
+              </a>
+              <a
+                href="/contact"
+                className="px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 hover:scale-105 hover:shadow-lg"
+                style={{ background: "#D3B267", color: "#0A3F4A" }}
+              >
+                Make Appointment
+              </a>
+            </div>
+            <div className="hidden lg:flex items-center gap-2 self-start text-xs font-bold text-gray-600">
+              <Clock size={14} className="text-[#0E5D6B] shrink-0" />
+              <span className="whitespace-nowrap">{officeHoursNavLabel}</span>
+            </div>
           </div>
 
           <button
@@ -224,6 +231,15 @@ export default function Navbar() {
               >
                 Contact
               </motion.a>
+              <motion.div
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.39 }}
+                className="flex items-center gap-2 py-3 px-4 text-sm text-gray-600"
+              >
+                <Clock size={15} className="text-[#0E5D6B] shrink-0" />
+                {officeHoursNavLabel}
+              </motion.div>
               <motion.a
                 href="/contact"
                 onClick={() => setMenuOpen(false)}

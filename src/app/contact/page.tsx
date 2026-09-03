@@ -5,12 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
-const officeHours = [
-  { day: "Monday – Friday", hours: "9:00 AM – 5:30 PM" },
-  { day: "Saturday", hours: "By Appointment" },
-  { day: "Sunday", hours: "Closed" },
-];
+import { officeHours } from "@/lib/office-hours";
 
 export default function ContactPage() {
   const formRef = useRef(null);
