@@ -153,8 +153,8 @@ export default function Navbar() {
                 Make Appointment
               </a>
             </div>
-            <div className="hidden lg:flex items-center gap-2 self-start text-xs font-bold text-gray-600">
-              <Clock size={14} className="text-[#0E5D6B] shrink-0" />
+            <div className="hidden lg:flex items-center gap-2 self-start text-sm font-medium text-[#0E5D6B]">
+              <Clock size={15} className="text-[#0E5D6B] shrink-0" />
               <span className="whitespace-nowrap">{officeHoursNavLabel}</span>
             </div>
           </div>
