@@ -118,7 +118,7 @@ export default function Footer() {
               }}
             >
               <div className="text-sm font-semibold text-white mb-1">
-                MTD ITSA — Coming Soon
+                MTD ITSA - Prepared for MTD
               </div>
               <div className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>
                 Are you prepared for Making Tax Digital? Get ready now before April 2026.
